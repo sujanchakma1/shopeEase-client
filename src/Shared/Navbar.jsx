@@ -79,17 +79,17 @@ const Navbar = () => {
         </ul>
 
         {/* Right buttons */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center text-white space-x-4">
          <AnimatedThemeToggler></AnimatedThemeToggler>
           <NavLink
             to="/cart"
-            className="flex items-center px-3 py-2 rounded-md hover:bg-slate-600 "
+            className="flex items-center px-3 py-2 rounded-xl hover:bg-secondary "
           >
             <FaShoppingCart className="mr-1" /> Cart
           </NavLink>
           <Button size="lg">
-            <NavLink to="/signin" className="flex items-center">
-              <FaUser className="mr-2" /> Sign In
+            <NavLink to="/login" className="flex items-center">
+              <FaUser className="mr-2" /> Login
             </NavLink>
           </Button>
         </div>

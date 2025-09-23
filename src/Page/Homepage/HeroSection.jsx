@@ -1,7 +1,7 @@
 // src/components/ui/HeroSection.jsx
 import React from "react"
 import { Button } from "@/components/ui/button"
-import heroImage from "../assets/hero.png"
+import heroImage from "../../assets/hero.png"
 import { Link } from "react-router"
 
 export default function HeroSection() {
