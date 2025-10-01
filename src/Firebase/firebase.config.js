@@ -6,12 +6,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyC4HNekFbvG4GBmdl51arslX_ATbFHTDjA",
-  authDomain: "shope-ease-8d0cb.firebaseapp.com",
-  projectId: "shope-ease-8d0cb",
-  storageBucket: "shope-ease-8d0cb.firebasestorage.app",
-  messagingSenderId: "937583768883",
-  appId: "1:937583768883:web:c50e605e9e14b8d44d7a46"
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase

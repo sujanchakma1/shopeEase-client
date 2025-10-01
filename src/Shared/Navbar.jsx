@@ -4,8 +4,11 @@ import { NavLink } from "react-router"; // ensure react-router-dom v6+
 import { FaShoppingCart, FaUser } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
+import UseAuth from "@/Hook/UseAuth";
+import { LogOut } from "lucide-react";
 
 const Navbar = () => {
+  const { user, logOut } = UseAuth();
   const links = [
     { name: "Home", to: "/" },
     { name: "Products", to: "/products" },
@@ -13,6 +16,15 @@ const Navbar = () => {
     { name: "About", to: "/about" },
     { name: "Contact", to: "/contact" },
   ];
+  const handleLogout = () => {
+    logOut()
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <nav className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white  sticky top-0 z-50">
@@ -80,18 +92,25 @@ const Navbar = () => {
 
         {/* Right buttons */}
         <div className="flex items-center text-white space-x-4">
-         <AnimatedThemeToggler></AnimatedThemeToggler>
+          <AnimatedThemeToggler></AnimatedThemeToggler>
           <NavLink
             to="/cart"
             className="flex items-center px-3 py-2 rounded-xl hover:bg-secondary "
           >
             <FaShoppingCart className="mr-1" /> Cart
           </NavLink>
-          <Button size="lg">
-            <NavLink to="/login" className="flex items-center">
-              <FaUser className="mr-2" /> Login
-            </NavLink>
-          </Button>
+          {user ? (
+            <button onClick={handleLogout} className="btn btn-primary rounded-lg">
+                <LogOut size={16} />
+                Logout
+            </button>
+          ) : (
+            <Button size="lg">
+              <NavLink to="/login" className="flex items-center">
+                <FaUser className="mr-2" /> Login
+              </NavLink>
+            </Button>
+          )}
         </div>
       </div>
     </nav>
