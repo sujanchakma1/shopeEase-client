@@ -3,9 +3,10 @@ import React from "react";
 import { NavLink } from "react-router"; // ensure react-router-dom v6+
 import { FaShoppingCart, FaUser } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
-import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 import UseAuth from "@/Hook/UseAuth";
 import { LogOut } from "lucide-react";
+import Logo from "./Logo";
+import ThemeControl from "./ThemeControl";
 
 const Navbar = () => {
   const { user, logOut } = UseAuth();
@@ -27,11 +28,11 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white  sticky top-0 z-50">
+    <nav className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
         {/* Logo & Mobile Menu */}
         <div className="flex items-center">
-          <a className="text-2xl font-bold ">ShopEase</a>
+          <Logo></Logo>
 
           {/* Mobile dropdown */}
           <div className="lg:hidden ml-4">
@@ -91,8 +92,8 @@ const Navbar = () => {
         </ul>
 
         {/* Right buttons */}
-        <div className="flex items-center text-white space-x-4">
-          <AnimatedThemeToggler></AnimatedThemeToggler>
+        <div className="flex items-center space-x-4">
+          <ThemeControl></ThemeControl>
           <NavLink
             to="/cart"
             className="flex items-center px-3 py-2 rounded-xl hover:bg-secondary "
@@ -106,7 +107,7 @@ const Navbar = () => {
             </button>
           ) : (
             <Button size="lg">
-              <NavLink to="/login" className="flex items-center">
+              <NavLink to="/login" className="flex items-center text-white">
                 <FaUser className="mr-2" /> Login
               </NavLink>
             </Button>
