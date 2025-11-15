@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
 @plugin "daisyui";
 
 @plugin "daisyui/theme" {
@@ -10,9 +13,9 @@
   --color-base-200: oklch(97% 0 0);
   --color-base-300: oklch(92% 0 0);
   --color-base-content: oklch(20% 0 0);
-  --color-primary: oklch(79% 0.184 86.047);
+  --color-primary: oklch(54% 0.245 262.881);
   --color-primary-content: oklch(100% 0 0);
-  --color-secondary: oklch(40% 0.17 325.612);
+  --color-secondary: oklch(79% 0.184 86.047);
   --color-secondary-content: oklch(97% 0.014 343.198);
   --color-accent: oklch(59% 0.145 163.225);
   --color-accent-content: oklch(97% 0.021 166.113);
@@ -36,9 +39,6 @@
   --noise: 0;
 }
 
-
-
-
 @plugin "daisyui/theme" {
   name: "dark";
   default: false;
@@ -48,10 +48,10 @@
   --color-base-200: oklch(20% 0.042 265.755);
   --color-base-300: oklch(27% 0.041 260.031);
   --color-base-content: oklch(96% 0.007 247.896);
-  --color-primary: oklch(79% 0.184 86.047);
-  --color-primary-content: oklch(27% 0.077 45.635);
-  --color-secondary: oklch(40% 0.17 325.612);
-  --color-secondary-content: oklch(100% 0 0);
+  --color-primary: oklch(54% 0.245 262.881);
+  --color-primary-content: oklch(100% 0 0);
+  --color-secondary: oklch(79% 0.184 86.047);
+  --color-secondary-content: oklch(97% 0.014 343.198);
   --color-accent: oklch(81% 0.111 293.571);
   --color-accent-content: oklch(28% 0.141 291.089);
   --color-neutral: oklch(44% 0.043 257.281);
@@ -72,5 +72,26 @@
   --border: 1px;
   --depth: 1;
   --noise: 0;
+}
+
+@theme inline {
+  --animate-marquee: marquee var(--duration) infinite linear;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+  @keyframes marquee {
+  from {
+    transform: translateX(0);
+    }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+    }
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+    }
+  }
 }
 

@@ -2,6 +2,8 @@ import UseAxiosSecure from "@/Hook/UseAxiosSecure";
 import Loading from "@/Shared/Loading";
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
+import { IoCartOutline } from "react-icons/io5";
+import { Link } from "react-router";
 
 const Products = () => {
   const axiosSecure = UseAxiosSecure();
@@ -30,10 +32,10 @@ const Products = () => {
   const totalPages = Math.ceil((data?.total || 0) / limit);
 
   return (
-    <div className="container mx-auto px-4 py-10">
+    <div className="container max-w-7xl mx-auto px-6 py-10">
       {/* Title */}
-      <h2 className="text-5xl font-bold text-center mb-8 text-indigo-600 dark:text-indigo-400">
-       Our Products
+      <h2 className="text-5xl font-bold text-center mb-8">
+        Our Products
       </h2>
 
       {/* Filter + Search */}
@@ -68,143 +70,75 @@ const Products = () => {
       {/* Products Grid */}
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {products.map((product) => (
-          <div
-            key={product._id}
-            className="relative bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl transition-all duration-300 rounded-2xl overflow-hidden group flex flex-col"
-          >
-            {/* Discount Badge */}
-            {product.discountPrice && (
-              <span className="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">
-                {(
-                  ((product.price - product.discountPrice) / product.price) *
-                  100
-                ).toFixed(0)}
-                % OFF
-              </span>
-            )}
+          <Link to={`/products/details/${product._id}`}>
+            <div
+              key={product._id}
+              className="relative bg-base-100 shadow-lg hover:shadow-2xl transition-all duration-300 rounded-2xl overflow-hidden group flex flex-col"
+            >
+              {/* Discount Badge */}
+              {product.discountPrice && (
+                <span className="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">
+                  {(
+                    ((product.price - product.discountPrice) / product.price) *
+                    100
+                  ).toFixed(0)}
+                  % OFF
+                </span>
+              )}
 
-            {/* Product Image */}
-            <div className="overflow-hidden">
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-            </div>
+              {/* Product Image */}
+              <div className="overflow-hidden">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
 
-            {/* Product Content */}
-            <div className="p-4 flex flex-col flex-grow">
-              <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 group-hover:text-indigo-600 transition">
-                {product.name}
-              </h3>
+              {/* Product Content */}
+              <div className="p-4 flex flex-col flex-grow">
+                <h3 className="text-lg font-semibold transition">
+                  {product.name}
+                </h3>
 
-              <p className="text-gray-600 dark:text-gray-400 text-sm mt-1 flex-grow line-clamp-2">
-                {product.description}
-              </p>
-
-              {/* Pricing */}
-              <div className="flex items-center justify-between mt-4">
+                <p className="text-gray-600 dark:text-gray-400 text-sm mt-1 flex-grow line-clamp-1">
+                  {product.description}
+                </p>
                 <div>
                   {product.discountPrice ? (
                     <div className="flex items-center gap-2">
                       <span className="text-gray-400 line-through text-sm">
                         ${product.price}
                       </span>
-                      <span className="text-indigo-600 dark:text-indigo-400 font-bold text-lg">
+                      <span className="text-secondary  font-bold text-lg">
                         ${product.discountPrice}
                       </span>
                     </div>
                   ) : (
-                    <span className="text-indigo-600 dark:text-indigo-400 font-bold text-lg">
+                    <span className="text-secondary  font-bold text-lg">
                       ${product.price}
                     </span>
                   )}
                 </div>
 
-                <button
-                  onClick={() =>
-                    document.getElementById(product._id).showModal()
-                  }
-                  className="px-3 py-1 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg text-sm font-medium transition"
-                >
-                  Details
-                </button>
-              </div>
-
-              {/* Modal */}
-              <dialog id={product._id} className="modal">
-                <div className="modal-box text-black max-w-3xl">
-                  <form method="dialog">
-                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                      ✕
-                    </button>
-                  </form>
-
-                  {/* Product Info */}
-                  <div className="flex flex-col md:flex-row gap-6">
-                    {/* Image */}
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full md:w-1/2 rounded-xl object-cover"
-                    />
-
-                    {/* Details */}
-                    <div className="flex flex-col justify-between">
-                      <div>
-                        <h3 className="text-2xl font-bold ">{product.name}</h3>
-                        <p className=" mt-2">{product.description}</p>
-                        <p className="mt-2">
-                          <span className="font-bold">Brand:</span>{" "}
-                          {product.brand || "N/A"}
-                        </p>
-                        <p className="text-lg font-semibold text-indigo-600 dark:text-indigo-400 mt-3">
-                          Price: ${product.discountPrice}
-                        </p>
-                        <p
-                          className={`mt-1 font-medium ${
-                            product.stock > 0
-                              ? "text-green-600"
-                              : "text-red-500"
-                          }`}
-                        >
-                          {product.stock > 0
-                            ? `In Stock: ${product.stock}`
-                            : "Out of Stock"}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Footer Buttons */}
-                  <div className="flex justify-between mt-8">
-                    {/* Add to Cart */}
-                    <button
-                      onClick={() =>
-                        console.log("Added to cart:", product.name)
-                      }
-                      className="px-6 py-2 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-white font-medium rounded-lg transition"
-                    >
-                      🛒 Add to Cart
-                    </button>
-
-                    {/* Buy Now */}
-                    <button
-                      disabled={product.stock === 0}
-                      onClick={() => console.log("Buying:", product.name)}
-                      className={`px-6 py-2 font-medium rounded-lg transition ${
-                        product.stock > 0
-                          ? "bg-indigo-500 hover:bg-indigo-600 text-white"
-                          : "bg-gray-400 text-white cursor-not-allowed"
-                      }`}
-                    >
-                      ⚡ Buy Now
-                    </button>
-                  </div>
+                {/* Pricing */}
+                <div className="flex items-center mt-auto justify-between ">
+                  <button>
+                    {" "}
+                    <IoCartOutline size={28} />
+                  </button>
+                  <Link to={`/product/buy/${product._id}`}>
+                  <button
+                    className="btn btn-primary text-white rounded-lg transition"
+                  >
+                    Buy Now
+                  </button></Link>
                 </div>
-              </dialog>
+
+                
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 
@@ -224,7 +158,7 @@ const Products = () => {
             onClick={() => setPage(idx + 1)}
             className={`px-3 py-1 border rounded ${
               page === idx + 1
-                ? "bg-indigo-500 text-white"
+                ? "bg-primary text-white"
                 : "hover:bg-indigo-100 dark:hover:bg-gray-700"
             }`}
           >
