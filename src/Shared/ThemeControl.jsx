@@ -17,7 +17,7 @@ const ThemeControl = () => {
     localStorage.setItem("theme", newTheme);
   };
   return (
-    <div>
+    <div className="hover:text-secondary">
       <label className="swap swap-rotate">
         {/* this hidden checkbox controls the state */}
         <input
