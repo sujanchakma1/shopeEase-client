@@ -133,7 +133,7 @@ const Products = () => {
 
               {/* Modal */}
               <dialog id={product._id} className="modal">
-                <div className="modal-box text-black max-w-3xl">
+                <div className="modal-box max-w-3xl rounded">
                   <form method="dialog">
                     <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
                       ✕
