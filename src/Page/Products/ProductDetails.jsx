@@ -3,10 +3,13 @@ import Loading from "@/Shared/Loading";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import UseAuth from "@/Hook/UseAuth";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const axiosSecure = UseAxiosSecure();
+  const {user} = UseAuth()
 
   // Quantity state
   const [qty, setQty] = useState(1);
@@ -42,6 +45,49 @@ const ProductDetails = () => {
   const decreaseQty = () => {
     if (qty > 1) setQty(qty - 1);
   };
+
+
+  // * Added to Cart
+
+  const handleAddToCart = async (product) => {
+      const {
+        _id,
+        name,
+        description,
+        brand,
+        category,
+        image,
+        price,
+        discountPrice,
+        stock,
+      } = product;
+  
+      const productData = {
+        productId: _id,
+        productName: name,
+        description,
+        brand,
+        category,
+        image,
+        price,
+        discountPrice,
+        stock,
+        userName: user.displayName,
+        userEmail: user.email,
+      };
+  
+      try {
+        const res = await axiosSecure.post("/cartProduct", productData);
+        console.log("Cart Response:", res.data);
+        if(res.data.insertedId){
+          toast.success("Added to Cart")
+        } else {
+        toast.error("Failed to add!");
+      }
+      } catch (error) {
+        toast.error("Add to Cart Error:",error);
+      }
+    };
 
   return (
     <div className="container max-w-7xl mx-auto p-6">
@@ -106,7 +152,7 @@ const ProductDetails = () => {
 
           {/* ACTION BUTTONS */}
           <div className="flex gap-4">
-            <button className="btn btn-secondary text-white rounded-md">
+            <button onClick={()=>handleAddToCart(product)} className="btn btn-secondary text-white rounded-md">
               Add to Cart
             </button>
             <Link to={`/product/buy/${product._id}`}>
@@ -123,9 +169,8 @@ const ProductDetails = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
         {recommended.map((item) => (
-          <Link to={`/products/details/${item._id}`}>
+          <Link key={item._id} to={`/products/details/${item._id}`}>
             <div
-              key={item._id}
               className="bg-white p-4 rounded-lg shadow hover:shadow-md transition"
             >
               <img
