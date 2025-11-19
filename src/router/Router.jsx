@@ -6,7 +6,8 @@ import Register from "@/Page/AuthPage/Register";
 import Login from "@/Page/AuthPage/Login";
 import Products from "@/Page/Products/Products";
 import ProductDetails from "@/Page/Products/ProductDetails";
-import ProductSell from "@/Page/Products/ProductSell";
+import BuyProduct from "@/Page/Products/BuyProduct";
+import Payment from "@/Page/Payment/Payment";
 
 const router = createBrowserRouter([
   {
@@ -27,13 +28,17 @@ const router = createBrowserRouter([
         Component: Products,
       },
       {
-        path: "/product/buy/:id",
-        Component: ProductSell
+        path: "/products/buy/:id",
+        Component: BuyProduct,
       },
       {
         path: "/products/details/:id",
-        Component: ProductDetails
-      }
+        Component: ProductDetails,
+      },
+      {
+        path: "/payment",
+        Component: Payment,
+      },
     ],
   },
 ]);

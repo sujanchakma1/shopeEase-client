@@ -40,6 +40,7 @@ const Navbar = () => {
               <div className="drawer-content">
                 {/* <!-- Navbar --> */}
                 <label
+                  htmlFor="my-drawer-4"
                   aria-label="open sidebar"
                   className="btn btn-square btn-ghost"
                 >
@@ -50,6 +51,7 @@ const Navbar = () => {
 
               <div className="drawer-side is-drawer-close:overflow-visible">
                 <label
+                  htmlFor="my-drawer-4"
                   aria-label="close sidebar"
                   className="drawer-overlay"
                 ></label>

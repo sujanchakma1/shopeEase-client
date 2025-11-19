@@ -16,7 +16,7 @@ const ProductDetails = () => {
 
   // Fetch ALL products (your backend structure)
   const { data, isLoading } = useQuery({
-    queryKey: ["all-products"],
+    queryKey: ["products"],
     queryFn: async () => {
       const res = await axiosSecure.get("/products");
       return res.data.products; // array

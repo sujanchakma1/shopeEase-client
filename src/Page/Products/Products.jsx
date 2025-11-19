@@ -173,7 +173,7 @@ const Products = () => {
                 {" "}
                 <IoCartOutline size={28} />
               </button>
-              <Link to={`/product/buy/${product._id}`}>
+              <Link to={`/products/buy/${product._id}`}>
                 <button className="btn btn-primary text-white rounded-lg transition">
                   Buy Now
                 </button>
