@@ -3,26 +3,31 @@ import { useForm } from "react-hook-form";
 import { Eye, EyeOff, LogIn } from "lucide-react";
 import UseAxiosSecure from "@/Hook/UseAxiosSecure";
 import UseAuth from "@/Hook/UseAuth";
+import { useLocation, useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { register, handleSubmit, reset } = useForm();
   const axiosSecure = UseAxiosSecure();
-  const { loginUser,googleLogin } = UseAuth();
+  const { loginUser, googleLogin } = UseAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const onSubmit = async (data) => {
     const { email, password } = data;
     loginUser(email, password)
       .then(async (result) => {
         if (result.user) {
-          alert("✅ Login successful!");
+          navigate(`${location.state ? location.state : "/"}`);
+          toast.success(" Login successful!");
           reset();
         } else {
-          alert("❌ Invalid credentials!");
+          toast.error("Invalid credentials!");
         }
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(error);
       });
   };
 
@@ -38,10 +43,13 @@ const Login = () => {
           lastLogin: new Date().toISOString(),
         };
         const userRes = await axiosSecure.post("users", userData);
-        console.log("successfully user", userRes.data);
+        if (userRes.data) {
+          navigate(`${location.state ? location.state : "/"}`);
+          toast.success(" Login successful!");
+        }
       })
       .catch((err) => {
-        console.log(err);
+        toast.error(err);
       });
   };
 
@@ -110,7 +118,10 @@ const Login = () => {
           </button>
           <div className="divider divider-primary">OR</div>
           {/* Google */}
-          <button onClick={handleGoogleLogin} className="btn bg-white text-black rounded-lg w-full border-[#e5e5e5]">
+          <button
+            onClick={handleGoogleLogin}
+            className="btn bg-white text-black rounded-lg w-full border-[#e5e5e5]"
+          >
             <svg
               aria-label="Google logo"
               width="16"

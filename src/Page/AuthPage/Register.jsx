@@ -3,11 +3,15 @@ import { useForm } from "react-hook-form";
 import { Eye, EyeOff, UserPlus } from "lucide-react";
 import UseAuth from "@/Hook/UseAuth";
 import UseAxiosSecure from "@/Hook/UseAxiosSecure";
+import { useLocation, useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { createUser, googleLogin } = UseAuth();
   const axiosSecure = UseAxiosSecure();
+  const navigate = useNavigate();
+  const location = useLocation();
   // react-hook-form setup
   const {
     register,
@@ -30,9 +34,11 @@ const Register = () => {
           createdAt: new Date().toISOString(),
           lastLogin: new Date().toISOString(),
         };
-        console.log(userData);
         const response = await axiosSecure.post("/users", userData);
-        console.log(response.data);
+        if (response.data.insertedId) {
+          navigate(`${location.state ? location.state : "/"}`);
+          toast.success(" Login successful!");
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -52,10 +58,13 @@ const Register = () => {
           lastLogin: new Date().toISOString(),
         };
         const userRes = await axiosSecure.post("users", userData);
-        console.log("successfully user", userRes.data);
+        if (userRes.data) {
+          navigate(`${location.state ? location.state : "/"}`);
+          toast.success(" Login successful!");
+        }
       })
       .catch((err) => {
-        console.log(err);
+        toast.error(err);
       });
   };
 
