@@ -95,7 +95,7 @@ const Products = () => {
           <option value="electronics">Electronics</option>
           <option value="fashion">Fashion</option>
           <option value="books">Books</option>
-          <option value="toys">Toys</option>
+          <option value="furniture">Furniture</option>
         </select>
 
         <input
