@@ -1,12 +1,15 @@
+import UseAuth from "@/Hook/UseAuth";
 import UseAxiosSecure from "@/Hook/UseAxiosSecure";
 import Loading from "@/Shared/Loading";
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { IoCartOutline } from "react-icons/io5";
 import { Link } from "react-router";
+import { toast } from "react-toastify";
 
 const Products = () => {
   const axiosSecure = UseAxiosSecure();
+  const { user } = UseAuth();
 
   // local states
   const [category, setCategory] = useState("all");
@@ -31,12 +34,52 @@ const Products = () => {
   const products = data?.products || [];
   const totalPages = Math.ceil((data?.total || 0) / limit);
 
+  //* Add to Cart
+
+  const handleAddToCart = async (product) => {
+    const {
+      _id,
+      name,
+      description,
+      brand,
+      category,
+      image,
+      price,
+      discountPrice,
+      stock,
+    } = product;
+
+    const productData = {
+      productId: _id,
+      productName: name,
+      description,
+      brand,
+      category,
+      image,
+      price,
+      discountPrice,
+      stock,
+      userName: user.displayName,
+      userEmail: user.email,
+    };
+
+    try {
+      const res = await axiosSecure.post("/cartProduct", productData);
+      console.log("Cart Response:", res.data);
+      if(res.data.insertedId){
+        toast.success("Added to Cart")
+      } else {
+      toast.error("Failed to add!");
+    }
+    } catch (error) {
+      toast.error("Add to Cart Error:",error);
+    }
+  };
+
   return (
     <div className="container max-w-7xl mx-auto px-6 py-10">
       {/* Title */}
-      <h2 className="text-5xl font-bold text-center mb-8">
-        Our Products
-      </h2>
+      <h2 className="text-5xl font-bold text-center mb-8">Our Products</h2>
 
       {/* Filter + Search */}
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
@@ -52,7 +95,7 @@ const Products = () => {
           <option value="electronics">Electronics</option>
           <option value="fashion">Fashion</option>
           <option value="books">Books</option>
-          <option value="toys">Toys</option>
+          <option value="furniture">Furniture</option>
         </select>
 
         <input
@@ -70,22 +113,21 @@ const Products = () => {
       {/* Products Grid */}
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {products.map((product) => (
-          <Link to={`/products/details/${product._id}`}>
-            <div
-              key={product._id}
-              className="relative bg-base-100 shadow-lg hover:shadow-2xl transition-all duration-300 rounded-2xl overflow-hidden group flex flex-col"
-            >
-              {/* Discount Badge */}
-              {product.discountPrice && (
-                <span className="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">
-                  {(
-                    ((product.price - product.discountPrice) / product.price) *
-                    100
-                  ).toFixed(0)}
-                  % OFF
-                </span>
-              )}
-
+          <div
+            key={product._id}
+            className="relative bg-base-100 shadow-lg hover:shadow-2xl transition-all duration-300 rounded-2xl overflow-hidden group flex flex-col"
+          >
+            {/* Discount Badge */}
+            {product.discountPrice && (
+              <span className="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">
+                {(
+                  ((product.price - product.discountPrice) / product.price) *
+                  100
+                ).toFixed(0)}
+                % OFF
+              </span>
+            )}
+            <Link to={`/products/details/${product._id}`}>
               {/* Product Image */}
               <div className="overflow-hidden">
                 <img
@@ -94,9 +136,7 @@ const Products = () => {
                   className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
-
-              {/* Product Content */}
-              <div className="p-4 flex flex-col flex-grow">
+              <div className="p-4">
                 <h3 className="text-lg font-semibold transition">
                   {product.name}
                 </h3>
@@ -120,25 +160,26 @@ const Products = () => {
                     </span>
                   )}
                 </div>
-
-                {/* Pricing */}
-                <div className="flex items-center mt-auto justify-between ">
-                  <button>
-                    {" "}
-                    <IoCartOutline size={28} />
-                  </button>
-                  <Link to={`/product/buy/${product._id}`}>
-                  <button
-                    className="btn btn-primary text-white rounded-lg transition"
-                  >
-                    Buy Now
-                  </button></Link>
-                </div>
-
-                
               </div>
+            </Link>
+
+            {/* Product Content */}
+            {/* Pricing */}
+            <div className="flex p-4 items-center mt-auto justify-between ">
+              <button
+                onClick={() => handleAddToCart(product)}
+                className="hover:text-primary hover:cursor-pointer"
+              >
+                {" "}
+                <IoCartOutline size={28} />
+              </button>
+              <Link to={`/products/buy/${product._id}`}>
+                <button className="btn btn-primary text-white rounded-lg transition">
+                  Buy Now
+                </button>
+              </Link>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
 

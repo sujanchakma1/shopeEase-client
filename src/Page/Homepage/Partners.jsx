@@ -68,20 +68,20 @@ const ReviewCard = ({ img, name, body }) => {
 
 export function Partners() {
   return (
-    <div className="relative max-w-7xl mx-auto flex w-full flex-col items-center justify-center overflow-hidden py-10">
+    <div className="relative max-w-7xl mx-auto px-6 flex w-full flex-col items-center justify-center overflow-hidden py-10">
       <div>
         <h1 className=" text-3xl font-bold flex justify-center pb-5">
           Our Trusted Partners
         </h1>
       </div>
       <Marquee pauseOnHover className="[--duration:20s]">
-        {firstRow.map((review) => (
-          <ReviewCard key={review.username} {...review} />
+        {firstRow.map((review,index) => (
+          <ReviewCard key={index} {...review} />
         ))}
       </Marquee>
       <Marquee reverse pauseOnHover className="[--duration:20s]">
-        {secondRow.map((review) => (
-          <ReviewCard key={review.username} {...review} />
+        {secondRow.map((review,index) => (
+          <ReviewCard key={index} {...review} />
         ))}
       </Marquee>
       <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>

@@ -8,6 +8,7 @@ import Logo from "./Logo";
 import ThemeControl from "./ThemeControl";
 import { IoCartOutline } from "react-icons/io5";
 import { FiMenu } from "react-icons/fi";
+import { LuLayoutDashboard } from "react-icons/lu";
 import { House, ShoppingBag, ShoppingCart, Info, Phone } from "lucide-react";
 
 const Navbar = () => {
@@ -17,6 +18,7 @@ const Navbar = () => {
     { name: "Products", to: "/products", icon: <ShoppingBag size={16} /> },
     { name: "About", to: "/about", icon: <Info size={16} /> },
     { name: "Contact", to: "/contact", icon: <Phone size={16} /> },
+    { name: "Dashboard", to: "/dashboard", icon: <LuLayoutDashboard /> },
   ];
   const handleLogout = () => {
     logOut()
@@ -35,29 +37,33 @@ const Navbar = () => {
         <div className="flex gap-2 items-center">
           {/* Mobile dropdown */}
           <div className="lg:hidden">
-            <div class="drawer lg:drawer-open">
-              <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
-              <div class="drawer-content">
+            <div className="drawer lg:drawer-open">
+              <input
+                id="my-drawer-4"
+                type="checkbox"
+                className="drawer-toggle"
+              />
+              <div className="drawer-content">
                 {/* <!-- Navbar --> */}
                 <label
-                  for="my-drawer-4"
+                  htmlFor="my-drawer-4"
                   aria-label="open sidebar"
-                  class="btn btn-square btn-ghost"
+                  className="btn btn-square btn-ghost"
                 >
                   {/* <!-- Sidebar toggle icon --> */}
                   <FiMenu size={24} />
                 </label>
               </div>
 
-              <div class="drawer-side is-drawer-close:overflow-visible">
+              <div className="drawer-side is-drawer-close:overflow-visible">
                 <label
-                  for="my-drawer-4"
+                  htmlFor="my-drawer-4"
                   aria-label="close sidebar"
-                  class="drawer-overlay"
+                  className="drawer-overlay"
                 ></label>
-                <div class="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
+                <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
                   {/* <!-- Sidebar content here --> */}
-                  <ul class="menu w-full space-y-4 grow">
+                  <ul className="menu w-full space-y-4 grow">
                     {links.map((link) => (
                       <li key={link.to}>
                         <NavLink
