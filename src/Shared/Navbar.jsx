@@ -8,6 +8,7 @@ import Logo from "./Logo";
 import ThemeControl from "./ThemeControl";
 import { IoCartOutline } from "react-icons/io5";
 import { FiMenu } from "react-icons/fi";
+import { LuLayoutDashboard } from "react-icons/lu";
 import { House, ShoppingBag, ShoppingCart, Info, Phone } from "lucide-react";
 
 const Navbar = () => {
@@ -17,6 +18,7 @@ const Navbar = () => {
     { name: "Products", to: "/products", icon: <ShoppingBag size={16} /> },
     { name: "About", to: "/about", icon: <Info size={16} /> },
     { name: "Contact", to: "/contact", icon: <Phone size={16} /> },
+    { name: "Dashboard", to: "/dashboard", icon: <LuLayoutDashboard /> },
   ];
   const handleLogout = () => {
     logOut()
@@ -36,7 +38,11 @@ const Navbar = () => {
           {/* Mobile dropdown */}
           <div className="lg:hidden">
             <div className="drawer lg:drawer-open">
-              <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
+              <input
+                id="my-drawer-4"
+                type="checkbox"
+                className="drawer-toggle"
+              />
               <div className="drawer-content">
                 {/* <!-- Navbar --> */}
                 <label

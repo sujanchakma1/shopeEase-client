@@ -7,7 +7,10 @@ import Login from "@/Page/AuthPage/Login";
 import Products from "@/Page/Products/Products";
 import ProductDetails from "@/Page/Products/ProductDetails";
 import BuyProduct from "@/Page/Products/BuyProduct";
-import Payment from "@/Page/Payment/Payment";
+import About from "@/Page/About/About";
+import DashboardLayout from "@/Layout/DashboardLayout";
+import Overview from "@/Page/Dashboard/Overview";
+import Payments from "@/Page/Dashboard/User/Payments";
 
 const router = createBrowserRouter([
   {
@@ -16,30 +19,42 @@ const router = createBrowserRouter([
     children: [
       { index: true, Component: Home },
       {
-        path: "/register",
+        path: "about",
+        Component: About,
+      },
+      {
+        path: "register",
         Component: Register,
       },
       {
-        path: "/login",
+        path: "login",
         Component: Login,
       },
       {
-        path: "/products",
+        path: "products",
         Component: Products,
       },
       {
-        path: "/products/buy/:id",
+        path: "products/buy/:id",
         Component: BuyProduct,
       },
       {
-        path: "/products/details/:id",
+        path: "products/details/:id",
         Component: ProductDetails,
-      },
-      {
-        path: "/payment",
-        Component: Payment,
-      },
+      }
     ],
+  },
+  {
+    path: "dashboard",
+    Component: DashboardLayout,
+    children:[
+      {index: true , Component: Overview},
+      {
+        path: "payments/:orderId",
+        Component: Payments
+
+      }
+    ]
   },
 ]);
 
