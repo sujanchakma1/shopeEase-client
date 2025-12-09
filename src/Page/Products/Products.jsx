@@ -174,7 +174,7 @@ const Products = () => {
                 <IoCartOutline size={28} />
               </button>
               <Link to={`/products/buy/${product._id}`}>
-                <button className="btn btn-primary text-white rounded-lg transition">
+                <button className="btn btn-primary rounded-lg transition">
                   Buy Now
                 </button>
               </Link>
@@ -188,7 +188,7 @@ const Products = () => {
         <button
           disabled={page === 1}
           onClick={() => setPage(page - 1)}
-          className="px-3 py-1 border rounded disabled:opacity-50"
+          className="px-3 py-1 border-2 border-gray-400 rounded disabled:opacity-50 cursor-pointer hover:bg-primary"
         >
           Prev
         </button>
@@ -197,10 +197,10 @@ const Products = () => {
           <button
             key={idx}
             onClick={() => setPage(idx + 1)}
-            className={`px-3 py-1 border rounded ${
+            className={`px-3  py-1 border-2 border-gray-400 rounded ${
               page === idx + 1
-                ? "bg-primary text-white"
-                : "hover:bg-indigo-100 dark:hover:bg-gray-700"
+                ? "bg-primary"
+                : "hover:bg-primary cursor-pointer"
             }`}
           >
             {idx + 1}
@@ -210,7 +210,7 @@ const Products = () => {
         <button
           disabled={page === totalPages}
           onClick={() => setPage(page + 1)}
-          className="px-3 py-1 border rounded disabled:opacity-50"
+          className="px-3 py-1 border-2 border-gray-400 rounded disabled:opacity-50 cursor-pointer hover:bg-primary"
         >
           Next
         </button>
