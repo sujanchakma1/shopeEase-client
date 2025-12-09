@@ -11,6 +11,7 @@ import About from "@/Page/About/About";
 import DashboardLayout from "@/Layout/DashboardLayout";
 import Overview from "@/Page/Dashboard/Overview";
 import Payments from "@/Page/Dashboard/User/Payments";
+import Orders from "@/Page/Dashboard/User/Orders";
 
 const router = createBrowserRouter([
   {
@@ -41,20 +42,23 @@ const router = createBrowserRouter([
       {
         path: "products/details/:id",
         Component: ProductDetails,
-      }
+      },
     ],
   },
   {
     path: "dashboard",
     Component: DashboardLayout,
-    children:[
-      {index: true , Component: Overview},
+    children: [
+      { index: true, Component: Overview },
       {
         path: "payments/:orderId",
-        Component: Payments
-
+        Component: Payments,
+      },
+      {
+        path: "orders",
+        Component: Orders
       }
-    ]
+    ],
   },
 ]);
 

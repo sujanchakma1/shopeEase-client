@@ -5,7 +5,7 @@ import { NavLink } from "react-router";
 const Sidebar = ({ onClose }) => {
   const menu = [
     { label: "Dashboard", path: "/dashboard" },
-    { label: "My Orders", path: "/dashboard/my-orders" },
+    { label: "My Orders", path: "/dashboard/orders" },
     { label: "Payments", path: "/dashboard/payments" },
   ];
 
