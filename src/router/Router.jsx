@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { createBrowserRouter } from "react-router";
 import RootLayout from "../Layout/RootLayout";
 import Home from "@/Page/Homepage/Home";
@@ -12,6 +12,8 @@ import DashboardLayout from "@/Layout/DashboardLayout";
 import Overview from "@/Page/Dashboard/Overview";
 import Payments from "@/Page/Dashboard/User/Payments";
 import Orders from "@/Page/Dashboard/User/Orders";
+import path from "path";
+import Contact from "@/Page/Contact/Contact";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "about",
         Component: About,
+      },
+      {
+        path: "contact",
+        Component: Contact,
       },
       {
         path: "register",
