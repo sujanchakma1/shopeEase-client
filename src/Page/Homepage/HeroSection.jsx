@@ -1,8 +1,9 @@
 // src/components/ui/HeroSection.jsx
-import React from "react"
-import { Button } from "@/components/ui/button"
-import heroImage from "../../assets/hero.png"
-import { Link } from "react-router"
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router";
+import heroLottie from "../../assets/Lottie/Hero-lottie.json";
+import Lottie from "lottie-react";
 
 export default function HeroSection() {
   return (
@@ -14,22 +15,21 @@ export default function HeroSection() {
             Welcome to <span className="text-yellow-400">ShopEase</span>
           </h1>
           <p className="mt-4 text-lg md:text-xl text-slate-200">
-            Fast, secure, and reliable shopping experience. Discover thousands of products at your fingertips.
+            Fast, secure, and reliable shopping experience. Discover thousands
+            of products at your fingertips.
           </p>
           <div className="mt-6">
-            <Button size="lg"><Link to="/products">Shop Now</Link></Button>
+            <Button size="lg">
+              <Link to="/products">Shop Now</Link>
+            </Button>
           </div>
         </div>
 
         {/* Right side - Image */}
-        <div className="lg:w-1/2 flex justify-center">
-          <img
-            src={heroImage}
-            alt="ShopEase Hero"
-            className="w-full max-w-lg rounded-xl shadow-lg"
-          />
+        <div className="w-64 h-64 mx-auto">
+          <Lottie animationData={heroLottie} loop={true} />
         </div>
       </div>
     </section>
-  )
+  );
 }
