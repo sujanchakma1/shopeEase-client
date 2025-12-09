@@ -62,7 +62,7 @@ const BuyProduct = () => {
       e.target.reset()
       setQuantity(1)
       toast.success("Product Order Successfully")
-      navigate("/payment")
+      navigate(`/dashboard/payments/${id}`)
     }
 
     console.log("Order Placed:", orderData);
