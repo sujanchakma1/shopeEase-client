@@ -99,7 +99,7 @@ const PaymentForm = () => {
     <div>
       <form
         onSubmit={handleSubmit}
-        className="bg-white space-y-4 p-6 rounded-xl shadow-md w-full max-w-md mx-auto"
+        className="bg-base-300 space-y-4 p-6 rounded-xl shadow-md w-full max-w-md mx-auto"
       >
         <CardElement className="p-2 border rounded" />
 

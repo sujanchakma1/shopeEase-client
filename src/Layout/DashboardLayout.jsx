@@ -34,7 +34,7 @@ const DashboardLayout = () => {
       <div className={`flex flex-col flex-1 transition duration-300 ${open ? "md:opacity-50" : ""}`}>
         {/* Mobile Header */}
         <div className="md:hidden bg-base-100 shadow p-4 flex items-center gap-3 relative z-10">
-          <button onClick={() => setOpen(true)}>
+          <button className="cursor-pointer" onClick={() => setOpen(true)}>
             <FiMenu size={26} />
           </button>
 
