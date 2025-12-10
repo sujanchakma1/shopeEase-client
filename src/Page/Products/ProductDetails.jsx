@@ -125,7 +125,7 @@ const ProductDetails = () => {
               Add to Cart
             </button>
             <Link to={`/products/buy/${product._id}`}>
-              <button className="btn btn-primary text-white rounded-md ">
+              <button className="btn btn-primary rounded-md ">
                 Buy Now
               </button>
             </Link>
@@ -139,7 +139,7 @@ const ProductDetails = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
         {recommended.map((item) => (
           <Link key={item._id} to={`/products/details/${item._id}`}>
-            <div className="bg-white p-4 rounded-lg shadow hover:shadow-md transition">
+            <div className="bg-base-200 p-4 rounded-lg shadow hover:shadow-md transition">
               <img
                 src={item.image}
                 alt={item.name}

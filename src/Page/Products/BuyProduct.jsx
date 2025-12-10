@@ -71,7 +71,7 @@ const BuyProduct = () => {
   return (
     <div className="container mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
       {/* LEFT SIDE — SHIPPING FORM */}
-      <div className="md:col-span-2 bg-white p-6 rounded-xl shadow min-h-full">
+      <div className="md:col-span-2 bg-base-200 p-6 rounded-xl shadow min-h-full">
         <h2 className="text-2xl text-primary font-semibold mb-5">Shipping Information</h2>
 
         <form onSubmit={handlePlaceOrder} className="space-y-4">
@@ -111,7 +111,7 @@ const BuyProduct = () => {
       </div>
 
       {/* RIGHT SIDE — ORDER SUMMARY */}
-      <div className="bg-white p-6 rounded-xl shadow flex flex-col justify-between min-h-full">
+      <div className="bg-base-200 p-6 rounded-xl shadow flex flex-col justify-between min-h-full">
         <div>
           <h3 className="text-2xl text-primary font-semibold mb-4">Order Summary</h3>
 
