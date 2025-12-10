@@ -3,50 +3,145 @@ import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
 import UseAxiosSecure from "@/Hook/UseAxiosSecure";
 
+// Icons
+import { BsPhone } from "react-icons/bs";
+import { GiClothes } from "react-icons/gi";
+import { FaBook } from "react-icons/fa";
+import { MdChair } from "react-icons/md";
+import { BiCategory } from "react-icons/bi";
+
+/* ----------------------------------
+   Category Meta (Icon + Designation)
+----------------------------------- */
+const categoryMeta = {
+  electronics: {
+    icon: <BsPhone size={32} />,
+    subtitle: "Latest Gadgets & Devices",
+  },
+  fashion: {
+    icon: <GiClothes size={32} />,
+    subtitle: "Trendy Wear & Lifestyle",
+  },
+  books: {
+    icon: <FaBook size={32} />,
+    subtitle: "Knowledge & Inspiration",
+  },
+  furniture: {
+    icon: <MdChair size={32} />,
+    subtitle: "Comfort for Your Space",
+  },
+  default: {
+    icon: <BiCategory size={32} />,
+    subtitle: "Browse Collection",
+  },
+};
+
+/* ----------------------------------
+   Helper
+----------------------------------- */
+const getCategoryMeta = (category) => {
+  return (
+    categoryMeta[category?.toLowerCase()] || categoryMeta.default
+  );
+};
+
+/* ----------------------------------
+   Component
+----------------------------------- */
 const FeatureCategories = () => {
   const axiosSecure = UseAxiosSecure();
   const navigate = useNavigate();
 
-  // Load ALL PRODUCTS to extract categories
-  const { data, isLoading } = useQuery({
+  // Fetch all products to extract categories
+  const { data, isLoading, isError } = useQuery({
     queryKey: ["allCategories"],
     queryFn: async () => {
-      // large limit to get all products
       const res = await axiosSecure.get("/products", {
-        params: { page: 1, limit: 5000 }
+        params: { page: 1, limit: 5000 },
       });
       return res.data.products;
     },
   });
 
-  if (isLoading) return <p>Loading Categories...</p>;
+  if (isLoading) {
+    return (
+      <div className="text-center py-20 text-gray-500">
+        Loading categories...
+      </div>
+    );
+  }
 
-  const allProducts = data || [];
+  if (isError) {
+    return (
+      <div className="text-center py-20 text-red-500">
+        Failed to load categories
+      </div>
+    );
+  }
 
-  // Extract UNIQUE categories
-  const categories = [...new Set(allProducts.map((p) => p.category))];
+  const products = data || [];
 
-  const handleCategoryClick = (cat) => {
-    navigate(`/products?category=${cat}&page=1`);
+  // Unique categories
+  const categories = [...new Set(products.map((p) => p.category))];
+
+  const handleCategoryClick = (category) => {
+    navigate(`/products?category=${category}&page=1`);
   };
 
   return (
-    <div className="container mx-auto px-6 py-10">
-      <h2 className="text-3xl font-bold mb-6">Featured Categories</h2>
-
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-        {categories.map((cat) => (
-          <div
-            key={cat}
-            onClick={() => handleCategoryClick(cat)}
-            className="bg-white shadow border p-6 rounded-xl cursor-pointer 
-                       hover:shadow-lg hover:scale-105 transition text-center"
-          >
-            <h3 className="text-lg font-semibold capitalize">{cat}</h3>
-          </div>
-        ))}
+    <section className="container mx-auto py-14">
+      {/* Heading */}
+      <div className="text-center mb-10">
+        <h2 className="text-3xl font-bold">Featured Categories</h2>
+        <p className="text-gray-500 mt-2">
+          Discover products by category
+        </p>
       </div>
-    </div>
+
+      {/* Category Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+        {categories.map((category) => {
+          const { icon, subtitle } = getCategoryMeta(category);
+
+          return (
+            <div
+              key={category}
+              onClick={() => handleCategoryClick(category)}
+              className="
+                group cursor-pointer rounded-2xl p-6 text-center
+                bg-gradient-to-br from-base-100 to-base-200
+                border border-gray-200
+                shadow-md
+                hover:shadow-xl hover:-translate-y-1
+                transition-all duration-300
+              "
+            >
+              {/* Icon */}
+              <div
+                className="
+                  mx-auto mb-4 flex items-center justify-center
+                  w-14 h-14 rounded-full
+                  bg-primary/10 text-primary
+                  group-hover:scale-110 transition
+                "
+              >
+                {icon}
+              </div>
+
+              {/* Category Name */}
+              <h3 className="text-lg font-semibold capitalize">
+                {category}
+              </h3>
+
+              {/* Designation */}
+              <p className="text-sm text-gray-500 mt-1">
+                {subtitle}
+              </p>
+            </div>
+          );
+        })}
+      </div>
+    </section>
   );
 };
 
