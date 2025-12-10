@@ -26,7 +26,7 @@ export default function HeroSection() {
         </div>
 
         {/* Right side - Image */}
-        <div className="w-64 h-64 mx-auto">
+        <div className="w-100 h-90 mx-auto">
           <Lottie animationData={heroLottie} loop={true} />
         </div>
       </div>
