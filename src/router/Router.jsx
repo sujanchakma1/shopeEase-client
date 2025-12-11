@@ -12,8 +12,8 @@ import DashboardLayout from "@/Layout/DashboardLayout";
 import Overview from "@/Page/Dashboard/Overview";
 import Payments from "@/Page/Dashboard/User/Payments";
 import Orders from "@/Page/Dashboard/User/Orders";
-import path from "path";
 import Contact from "@/Page/Contact/Contact";
+import Cart from "@/Page/Cart/Cart";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +49,10 @@ const router = createBrowserRouter([
         path: "products/details/:id",
         Component: ProductDetails,
       },
+      {
+        path: "cart",
+        Component: Cart,
+      },
     ],
   },
   {
@@ -62,8 +66,8 @@ const router = createBrowserRouter([
       },
       {
         path: "orders",
-        Component: Orders
-      }
+        Component: Orders,
+      },
     ],
   },
 ]);
