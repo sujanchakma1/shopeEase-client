@@ -65,7 +65,7 @@ const ProductDetails = () => {
     };
 
     try {
-      const res = await axiosSecure.post("/cartProduct", productData);
+      const res = await axiosSecure.post("/cart", productData);
       console.log("Cart Response:", res.data);
       if (res.data.insertedId) {
         toast.success("Added to Cart");
