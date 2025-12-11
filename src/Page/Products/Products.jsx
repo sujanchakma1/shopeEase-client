@@ -52,7 +52,7 @@ const Products = () => {
     if (!user) return toast.error("Please login first");
 
     try {
-      const res = await axiosSecure.post("/cartProduct", {
+      const res = await axiosSecure.post("/cart", {
         productId: product._id,
         productName: product.name,
         image: product.image,
