@@ -68,7 +68,7 @@ const ReviewCard = ({ img, name, body }) => {
 
 export function Partners() {
   return (
-    <div className="relative max-w-7xl mx-auto px-6 flex w-full flex-col items-center justify-center overflow-hidden py-10">
+    <div className="relative max-w-7xl mx-auto px-6 flex w-full flex-col items-center justify-center py-10">
       <div>
         <h1 className=" text-3xl font-bold flex justify-center pb-5">
           Our Trusted Partners

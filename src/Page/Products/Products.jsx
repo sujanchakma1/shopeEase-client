@@ -55,17 +55,19 @@ const Products = () => {
       const res = await axiosSecure.post("/cart", {
         productId: product._id,
         productName: product.name,
+        description: product.description,
+        brand: product.brand,
+        category: product.category,
         image: product.image,
         price: product.price,
         discountPrice: product.discountPrice,
-        category: product.category,
         userEmail: user.email,
         userName: user.displayName,
       });
 
-      if (res.data.insertedId) toast.success("Added to cart");
+      if (res.data.insertedId) toast.success(`${product.name}Added to cart!`);
     } catch {
-      toast.error("Failed to add");
+      toast.error(`${product.name}Failed to add`);
     }
   };
 
@@ -117,27 +119,37 @@ const Products = () => {
         {products.map((product) => (
           <div
             key={product._id}
-            className="bg-base-200 shadow rounded-xl overflow-hidden flex flex-col"
+            className="bg-base-200 hover:shadow-xl duration-300  group shadow rounded-xl overflow-hidden flex flex-col p-4"
           >
             <Link to={`/products/details/${product._id}`}>
               <img
                 src={product.image}
                 alt={product.name}
-                className="h-64 w-full object-cover"
+                className="h-64 w-full rounded-md object-cover group-hover:scale-105 duration-300"
               />
-              <div className="p-4">
+              <div className="pt-4">
                 <h3 className="font-semibold">{product.name}</h3>
                 <p className="text-sm text-gray-500 line-clamp-1">
                   {product.description}
                 </p>
-                <p className="font-bold mt-1">
-                  ${product.discountPrice || product.price}
-                </p>
+                <div className="flex items-center gap-2 mt-2">
+                  <span className="text-primary font-bold text-lg">
+                    ৳{product.discountPrice}
+                  </span>
+                  {product.price > product.discountPrice && (
+                    <span className="line-through text-gray-400 text-sm">
+                      ৳{product.price}
+                    </span>
+                  )}
+                </div>
               </div>
             </Link>
 
             <div className="p-4 flex justify-between items-center mt-auto">
-              <button className="cursor-pointer hover:text-primary" onClick={() => handleAddToCart(product)}>
+              <button
+                className="cursor-pointer hover:text-primary"
+                onClick={() => handleAddToCart(product)}
+              >
                 <IoCartOutline size={24} />
               </button>
 
