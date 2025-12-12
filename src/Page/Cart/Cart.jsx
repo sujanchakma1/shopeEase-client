@@ -77,31 +77,35 @@ const Cart = () => {
             "
             >
               {/* Left section */}
-              <div className="flex items-center gap-6">
-                <div
-                  className="
+              <Link to={`/products/details/${item.productId}`}>
+                <div className="flex items-center gap-6">
+                  <div
+                    className="
                   w-24 h-24 md:w-28 md:h-28 rounded-xl overflow-hidden shadow
                   bg-gray-100
                 "
-                >
-                  <img
-                    src={item.image}
-                    alt={item.productName}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.productName}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
 
-                <div>
-                  <h3 className="text-xl font-semibold">{item.productName}</h3>
-                  <p className="text-gray-500 capitalize">{item.category}</p>
+                  <div>
+                    <h3 className="text-xl font-semibold">
+                      {item.productName}
+                    </h3>
+                    <p className="text-gray-500 capitalize">{item.category}</p>
 
-                  <p className="mt-1">
-                    <span className="text-primary font-bold text-xl">
-                      ৳{item.discountPrice}
-                    </span>
-                  </p>
+                    <p className="mt-1">
+                      <span className="text-primary font-bold text-xl">
+                        ৳{item.discountPrice}
+                      </span>
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </Link>
 
               {/* Action buttons */}
               <div className="flex flex-col md:flex-row gap-3">
@@ -114,7 +118,7 @@ const Cart = () => {
                     shadow-sm hover:shadow-md transition
                   "
                   >
-                    Buy Now
+                    Order Now
                   </button>
                 </Link>
 

@@ -10,7 +10,6 @@ const ProductDetails = () => {
   const axiosSecure = UseAxiosSecure();
   const { user } = UseAuth();
 
-
   // Fetch ALL products (your backend structure)
   const { data: products, isLoading } = useQuery({
     queryKey: ["product"],
@@ -33,7 +32,6 @@ const ProductDetails = () => {
   const recommended = products
     .filter((p) => p.category === product.category && p._id !== id)
     .slice(0, 4);
-
 
   // * Added to Cart
 
@@ -68,9 +66,9 @@ const ProductDetails = () => {
       const res = await axiosSecure.post("/cart", productData);
       console.log("Cart Response:", res.data);
       if (res.data.insertedId) {
-        toast.success("Added to Cart");
+        toast.success(`${product.name}Added to Cart!`);
       } else {
-        toast.error("Failed to add!");
+        toast.error(`${product.name}Failed to add!`);
       }
     } catch (error) {
       toast.error("Add to Cart Error:", error);
@@ -104,7 +102,7 @@ const ProductDetails = () => {
                 <span className="text-gray-400 line-through text-sm">
                   ${product.price}
                 </span>
-                <span className="text-secondary  font-bold text-lg">
+                <span className="text-primary  font-bold text-lg">
                   ${product.discountPrice}
                 </span>
               </div>
@@ -113,7 +111,9 @@ const ProductDetails = () => {
                 ${product.price}
               </span>
             )}
-            <p className="text-md font-medium mb-2">Available Stock: {product.stock}</p>
+            <p className="text-md font-medium mb-2">
+              Available Stock: {product.stock}
+            </p>
           </div>
 
           {/* ACTION BUTTONS */}
@@ -125,9 +125,7 @@ const ProductDetails = () => {
               Add to Cart
             </button>
             <Link to={`/products/buy/${product._id}`}>
-              <button className="btn btn-primary rounded-md ">
-                Buy Now
-              </button>
+              <button className="btn btn-primary rounded-md ">Order Now</button>
             </Link>
           </div>
         </div>
@@ -146,7 +144,14 @@ const ProductDetails = () => {
                 className="h-40 w-full object-cover rounded"
               />
               <h3 className="font-semibold mt-3">{item.name}</h3>
-              <p className="text-red-600 font-bold mt-1">৳ {item.price}</p>
+              <div className="flex items-center gap-2">
+                <span className="text-gray-400 line-through text-sm">
+                  ${product.price}
+                </span>
+                <span className="text-primary  font-bold text-lg">
+                  ${product.discountPrice}
+                </span>
+              </div>
             </div>
           </Link>
         ))}

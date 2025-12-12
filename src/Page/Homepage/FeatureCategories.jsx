@@ -89,7 +89,7 @@ const FeatureCategories = () => {
   };
 
   return (
-    <section className="container mx-auto py-14">
+    <section className="container max-w-7xl mx-auto px-6 py-14">
       {/* Heading */}
       <div className="text-center mb-10">
         <h2 className="text-3xl font-bold">Featured Categories</h2>
