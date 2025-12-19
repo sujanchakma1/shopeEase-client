@@ -37,7 +37,7 @@ const PopularProducts = () => {
       if (res.data.insertedId) {
         toast.success(`${product.name} Added to cart!`);
       } else {
-        toast.error(`${product.name}Failed to add!`);
+        toast.error(`${product.name} Failed to add!`);
       }
     } catch (error) {
       toast.error("Add to Cart Error:", error);

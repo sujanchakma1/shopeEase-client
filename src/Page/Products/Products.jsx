@@ -65,9 +65,9 @@ const Products = () => {
         userName: user.displayName,
       });
 
-      if (res.data.insertedId) toast.success(`${product.name}Added to cart!`);
+      if (res.data.insertedId) toast.success(`${product.name} Added to cart!`);
     } catch {
-      toast.error(`${product.name}Failed to add`);
+      toast.error(`${product.name} Failed to add`);
     }
   };
 
@@ -145,7 +145,7 @@ const Products = () => {
               </div>
             </Link>
 
-            <div className="p-4 flex justify-between items-center mt-auto">
+            <div className="flex justify-between items-center mt-auto">
               <button
                 className="cursor-pointer hover:text-primary"
                 onClick={() => handleAddToCart(product)}
@@ -154,7 +154,7 @@ const Products = () => {
               </button>
 
               <Link to={`/products/buy/${product._id}`}>
-                <button className="btn btn-primary btn-md">Buy</button>
+                <button className="btn btn-primary rounded-lg">Order Now</button>
               </Link>
             </div>
           </div>
