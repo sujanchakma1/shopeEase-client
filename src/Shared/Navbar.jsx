@@ -1,6 +1,6 @@
 // src/components/ui/Navbar.jsx
 import React from "react";
-import { NavLink } from "react-router"; // ensure react-router-dom v6+
+import { NavLink, useNavigate } from "react-router"; // ensure react-router-dom v6+
 import { FaUser } from "react-icons/fa";
 import UseAuth from "@/Hook/UseAuth";
 import { LogOut } from "lucide-react";
@@ -13,6 +13,7 @@ import { House, ShoppingBag, ShoppingCart, Info, Phone } from "lucide-react";
 
 const Navbar = () => {
   const { user, logOut } = UseAuth();
+  const navigate = useNavigate();
   const links = [
     { name: "Home", to: "/", icon: <House size={16} /> },
     { name: "Products", to: "/products", icon: <ShoppingBag size={16} /> },
@@ -23,6 +24,8 @@ const Navbar = () => {
   const handleLogout = () => {
     logOut()
       .then((res) => {
+        localStorage.removeItem("access-token");
+        navigate("/login");
         console.log(res.user);
       })
       .catch((err) => {
@@ -113,9 +116,28 @@ const Navbar = () => {
             <IoCartOutline size={28} />
           </NavLink>
           {user ? (
-            <button onClick={handleLogout} className="hover:text-primary">
-              <LogOut size={24} />
-            </button>
+            <div className="dropdown dropdown-end">
+              <div tabIndex={0} role="button" className="cursor-pointer">
+                <img
+                  className="w-12 h-12 rounded-full object-cover"
+                  src={user.photoURL}
+                  alt="Profile"
+                />
+              </div>
+              <ul
+                tabIndex={0}
+                className="menu space-y-5 dropdown-content bg-base-300 rounded-box z-1 mt-4 w-52 p-2 shadow-sm"
+              >
+                <li className="font-semibold text-xl px-3">
+                  {user.displayName}
+                </li>
+                <li>
+                  <button onClick={handleLogout} className="hover:text-primary">
+                    <LogOut size={24} />
+                  </button>
+                </li>
+              </ul>
+            </div>
           ) : (
             <NavLink to="/login" className="hover:text-primary">
               <FaUser className="mr-2" size={24} />

@@ -84,7 +84,7 @@ const Orders = () => {
     <div className=" w-full">
       <h2 className="text-2xl font-semibold mb-4">My Orders</h2>
 
-      {orders.length === 0 && <p className="text-gray-600">No orders found.</p>}
+      {orders.length === 0 && <p className="text-gray-600 text-center">No orders found.</p>}
 
       <div className="overflow-x-auto shadow rounded-lg">
         <table className="table w-full">
