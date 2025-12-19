@@ -10,7 +10,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { register, handleSubmit, reset } = useForm();
   const axiosSecure = UseAxiosSecure();
-  const { loginUser, googleLogin } = UseAuth();
+  const { loginUser } = UseAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -19,8 +19,13 @@ const Login = () => {
     loginUser(email, password)
       .then(async (result) => {
         if (result.user) {
-          navigate(`${location.state ? location.state : "/"}`);
-          toast.success(" Login successful!");
+          const userRes = await axiosSecure.post("/auth/login", data);
+          console.log(userRes);
+          if (userRes.data) {
+            localStorage.setItem("access-token", userRes.data.token);
+            navigate(`${location.state ? location.state : "/"}`);
+            toast.success(" Login successful!");
+          }
           reset();
         } else {
           toast.error("Invalid credentials!");
@@ -28,28 +33,6 @@ const Login = () => {
       })
       .catch((error) => {
         toast.error(error);
-      });
-  };
-
-  const handleGoogleLogin = () => {
-    googleLogin()
-      .then(async (res) => {
-        const userData = {
-          name: res.user.displayName,
-          email: res.user.email,
-          photoURL: res.user.photoURL,
-          role: "user",
-          createdAt: new Date().toISOString(),
-          lastLogin: new Date().toISOString(),
-        };
-        const userRes = await axiosSecure.post("users", userData);
-        if (userRes.data) {
-          navigate(`${location.state ? location.state : "/"}`);
-          toast.success(" Login successful!");
-        }
-      })
-      .catch((err) => {
-        toast.error(err);
       });
   };
 
@@ -115,41 +98,6 @@ const Login = () => {
             className="w-full btn btn-primary rounded-lg font-semibold"
           >
             <LogIn size={18} /> Login
-          </button>
-          <div className="divider divider-primary">OR</div>
-          {/* Google */}
-          <button
-            onClick={handleGoogleLogin}
-            className="btn bg-white text-black rounded-lg w-full border-[#e5e5e5]"
-          >
-            <svg
-              aria-label="Google logo"
-              width="16"
-              height="16"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 512 512"
-            >
-              <g>
-                <path d="m0 0H512V512H0" fill="#fff"></path>
-                <path
-                  fill="#34a853"
-                  d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"
-                ></path>
-                <path
-                  fill="#4285f4"
-                  d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"
-                ></path>
-                <path
-                  fill="#fbbc02"
-                  d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"
-                ></path>
-                <path
-                  fill="#ea4335"
-                  d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"
-                ></path>
-              </g>
-            </svg>
-            Login with Google
           </button>
         </form>
 
