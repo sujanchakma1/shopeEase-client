@@ -21,6 +21,8 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cobe": "^0.6.5",
+    "emailjs": "^5.0.0",
+    "emailjs-com": "^3.2.0",
     "firebase": "^12.3.0",
     "lottie-react": "^2.4.1",
     "lucide-react": "^0.544.0",
