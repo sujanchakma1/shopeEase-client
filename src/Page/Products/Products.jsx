@@ -74,7 +74,9 @@ const Products = () => {
   return (
     <div className="container max-w-7xl mx-auto px-6 py-10">
       <h2 className="text-5xl font-bold text-center mb-8">Our Products</h2>
-
+      {products.length === 0 && (
+        <p className="text-gray-600 text-center">No Product found.</p>
+      )}
       {/* ✅ Filters */}
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-10">
         {/* Category */}
@@ -154,7 +156,9 @@ const Products = () => {
               </button>
 
               <Link to={`/products/buy/${product._id}`}>
-                <button className="btn btn-primary rounded-lg">Order Now</button>
+                <button className="btn btn-primary rounded-lg">
+                  Order Now
+                </button>
               </Link>
             </div>
           </div>
