@@ -66,9 +66,9 @@ const ProductDetails = () => {
       const res = await axiosSecure.post("/cart", productData);
       console.log("Cart Response:", res.data);
       if (res.data.insertedId) {
-        toast.success(`${product.name}Added to Cart!`);
+        toast.success(`${product.name} Added to Cart!`);
       } else {
-        toast.error(`${product.name}Failed to add!`);
+        toast.error(`${product.name} Failed to add!`);
       }
     } catch (error) {
       toast.error("Add to Cart Error:", error);
