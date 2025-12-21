@@ -1,8 +1,8 @@
 import React from 'react';
 import HeroSection from './HeroSection';
-import { Partners } from './Partners';
 import FeatureCategories from './FeatureCategories';
 import PopularProducts from './PopularProducts';
+import PartnerMarquee from './Partners';
 
 const Home = () => {
   return (
@@ -10,7 +10,7 @@ const Home = () => {
       <HeroSection></HeroSection>
       <FeatureCategories></FeatureCategories>
       <PopularProducts></PopularProducts>
-      <Partners></Partners>
+      <PartnerMarquee></PartnerMarquee>
     </div>
   );
 };
