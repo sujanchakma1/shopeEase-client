@@ -1,117 +1,133 @@
-// src/components/ui/Footer.jsx
 import React from "react";
-import { Button } from "@/components/ui/button";
-import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 import { Link } from "react-router";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaTwitter,
+  FaPhoneAlt,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-base-200">
-      <div className="max-w-7xl mx-auto px-6 py-12 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Brand & description */}
+    <footer className="bg-gradient-to-b from-slate-900 to-slate-950 text-slate-300">
+      <div className="max-w-7xl mx-auto px-6 py-16">
+        {/* Top Section */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+          {/* Brand */}
           <div className="space-y-5">
-            <h3 className="text-2xl font-bold">ShopEase</h3>
-            <p className="mt-3 text-sm">
+            <h3 className="text-2xl font-bold text-white">ShopEase</h3>
+            <p className="text-sm leading-relaxed">
               Shopping made easy — curated products, fast delivery, and secure
-              checkout. Join thousands who trust ShopEase.
+              checkout. Trusted by thousands of happy customers.
             </p>
-            <Link to="/products">
-              <Button size="sm" className=" text-white cursor-pointer">
-                Products
-              </Button>
+            <Link
+              to="/products"
+              className="inline-block mt-2 text-sm font-semibold hover:text-primary text-blue-500"
+            >
+              Browse Products →
             </Link>
+          </div>
+
+          {/* Support */}
+          <div>
+            <h4 className="text-sm tracking-widest text-white mb-5">SUPPORT</h4>
+            <div className="flex items-center gap-4 mb-4 p-4 rounded-xl border border-white/10">
+              <FaPhoneAlt className="text-primary" />
+              <div>
+                <p className="text-xs text-slate-400">9 AM – 9 PM</p>
+                <p className="font-semibold text-white">+880 1570000000</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-4 p-4 rounded-xl border border-white/10">
+              <FaMapMarkerAlt className="text-primary" />
+              <div>
+                <p className="text-sm">Find Our Store</p>
+                <p className="font-semibold text-white">
+                  Chattogram, Bangladesh
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className=" font-semibold">Quick Links</h4>
-            <ul className="mt-3 space-y-2">
+            <h4 className="text-sm tracking-widest text-white mb-5">
+              QUICK LINKS
+            </h4>
+            <ul className="space-y-3 text-sm">
               <li>
-                <Link to="/products" className="hover:text-primary text-sm">
+                <Link to="/products" className="hover:text-primary">
                   Products
                 </Link>
               </li>
               <li>
-                <Link to="/dashboard" className="hover:text-primary text-sm">
+                <Link to="/dashboard" className="hover:text-primary">
                   Dashboard
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="hover:text-primary text-sm">
+                <Link to="/about" className="hover:text-primary">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="hover:text-primary text-sm">
+                <Link to="/contact" className="hover:text-primary">
                   Contact
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Company */}
+          {/* Stay Connected */}
           <div>
-            <h4 className=" font-semibold">Company</h4>
-            <ul className="mt-3 space-y-2">
-              <li>
-                <Link to="/career" className="hover:text-primary text-sm">
-                  Careers
-                </Link>
-              </li>
-              <li>
-                <Link to="/returns" className="hover:text-primary text-sm">
-                  Returns
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/privacy-policy"
-                  className="hover:text-primary text-sm"
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Newsletter & Social */}
-          <div>
-            <h4 className=" font-semibold">Stay updated</h4>
-            <p className="mt-2 text-sm">
-              Subscribe to get the latest offers and product updates.
+            <h4 className="text-sm tracking-widest text-white mb-5">
+              STAY CONNECTED
+            </h4>
+            <p className="text-sm mb-4">
+              Subscribe & follow us to get latest offers and updates.
             </p>
-            <div className="mt-6">
-              <h5 className="text-sm font-semibold">Follow us</h5>
-              <div className="mt-3 flex space-x-3">
-                <a href="#" className="p-2 rounded-md hover:text-gray-500">
-                  <FaFacebookF className="w-5 h-5" />
-                </a>
-                <a href="#" className="p-2 rounded-md hover:text-gray-500">
-                  <FaTwitter className="w-5 h-5" />
-                </a>
-                <a href="#" className="p-2 rounded-md hover:text-gray-500">
-                  <FaInstagram className="w-5 h-5" />
-                </a>
-              </div>
+            <div className="flex gap-4">
+              <a
+                className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-primary transition"
+                href="#"
+              >
+                <FaFacebookF />
+              </a>
+              <a
+                className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-primary transition"
+                href="#"
+              >
+                <FaTwitter />
+              </a>
+              <a
+                className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-primary transition"
+                href="#"
+              >
+                <FaInstagram />
+              </a>
             </div>
           </div>
         </div>
 
-        <hr className="my-8 border-gray-600" />
+        {/* Divider */}
+        <div className="border-t border-white/10 my-10" />
 
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-sm">
-          <p>© {new Date().getFullYear()} ShopEase. All rights reserved.</p>
-          <div className="mt-3 sm:mt-0">
-            <a href="#" className="hover:text-gray-500 px-2">
+        {/* Bottom */}
+        <div className="flex flex-col sm:flex-row items-center justify-between text-sm gap-4">
+          <p className="text-slate-400">
+            © {new Date().getFullYear()} ShopEase. All rights reserved.
+          </p>
+          <div className="flex gap-4">
+            <Link to="/terms" className="hover:text-primary">
               Terms
-            </a>
-            <a href="#" className="hover:text-gray-500 px-2">
+            </Link>
+            <Link to="/privacy-policy" className="hover:text-primary">
               Privacy
-            </a>
-            <a href="#" className="hover:text-gray-500 px-2">
+            </Link>
+            <Link to="/support" className="hover:text-primary">
               Support
-            </a>
+            </Link>
           </div>
         </div>
       </div>

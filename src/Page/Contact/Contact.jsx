@@ -1,6 +1,12 @@
 import React, { useRef } from "react";
 import { AiOutlineMail } from "react-icons/ai";
-import { FaPhone } from "react-icons/fa";
+import {
+  FaClock,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaPhone,
+  FaPhoneAlt,
+} from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 import { FiSend } from "react-icons/fi";
 import { toast } from "react-toastify";
@@ -31,6 +37,30 @@ const Contact = () => {
       );
   };
 
+  function InfoCard({ icon, title, text }) {
+    return (
+      <div
+        className="group cursor-pointer rounded-2xl p-6 text-center
+                bg-gradient-to-br from-base-100 to-base-200
+                border border-gray-200
+                shadow-md
+                hover:shadow-xl hover:-translate-y-1
+                transition-all duration-300"
+      >
+        <div
+          className="mx-auto mb-4 flex items-center justify-center
+                  w-14 h-14 rounded-full
+                  bg-primary/10 text-primary
+                  group-hover:scale-110 transition"
+        >
+          {icon}
+        </div>
+        <h4 className="font-semibold mb-1">{title}</h4>
+        <p className="text-sm text-slate-600 dark:text-slate-400">{text}</p>
+      </div>
+    );
+  }
+
   return (
     <div className="container mx-auto px-6 py-16">
       {/* ===== Header ===== */}
@@ -41,45 +71,33 @@ const Contact = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* Contact Info */}
-        <div className="bg-base-200 shadow-xl rounded-2xl p-8 space-y-6">
-          <h3 className="text-2xl font-semibold text-center mb-4">
-            Contact Information
-          </h3>
-
-          <div className="flex items-center gap-4">
-            <FaPhone className="text-primary mt-1" size={22} />
-            <div>
-              <p className="text-sm text-gray-500">Phone / WhatsApp</p>
-              <a href="tel:+8801571312226" className="text-lg font-semibold">
-                +880 1571-312226
-              </a>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <AiOutlineMail className="text-primary mt-1" size={24} />
-            <div>
-              <p className="text-sm text-gray-500">Email</p>
-              <a
-                href="mailto:sujanckz926@gmail.com"
-                className="text-lg font-semibold"
-              >
-                sujanckz926@gmail.com
-              </a>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <IoLocationOutline className="text-primary mt-1" size={26} />
-            <div>
-              <p className="text-sm text-gray-500">Location</p>
-              <p className="text-lg font-semibold">Chattogram, Bangladesh</p>
-            </div>
-          </div>
+      {/* Contact Info Cards */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+          <InfoCard
+            icon={<FaPhoneAlt size={26}/>}
+            title="Phone"
+            text="+880 1570000000"
+          />
+          <InfoCard
+            icon={<FaEnvelope size={26}/>}
+            title="Email"
+            text="support@shopease.com"
+          />
+          <InfoCard
+            icon={<FaMapMarkerAlt size={26}/>}
+            title="Address"
+            text="Chattogram, Bangladesh"
+          />
+          <InfoCard
+            icon={<FaClock size={26}/>}
+            title="Working Hours"
+            text="9 AM – 9 PM"
+          />
         </div>
+      </section>
 
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Send Message */}
         <div className="bg-base-200 shadow-xl rounded-2xl p-8">
           <h3 className="text-2xl font-semibold mb-4 text-center">
@@ -126,6 +144,19 @@ const Contact = () => {
               Send Message <FiSend />
             </button>
           </form>
+        </div>
+        {/* Contact Info */}
+        <div className="flex flex-col justify-center">
+          <h3 className="text-xl font-bold mb-4">We’d love to hear from you</h3>
+          <p className="text-slate-600 dark:text-slate-400 mb-6">
+            Whether you have a question about products, orders, or partnerships
+            — our team is ready to answer all your questions.
+          </p>
+          <ul className="space-y-3 text-sm">
+            <li>✔ Fast customer support</li>
+            <li>✔ Trusted e-commerce service</li>
+            <li>✔ Customer-first approach</li>
+          </ul>
         </div>
       </div>
 

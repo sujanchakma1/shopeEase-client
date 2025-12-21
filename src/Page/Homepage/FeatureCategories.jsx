@@ -40,9 +40,7 @@ const categoryMeta = {
    Helper
 ----------------------------------- */
 const getCategoryMeta = (category) => {
-  return (
-    categoryMeta[category?.toLowerCase()] || categoryMeta.default
-  );
+  return categoryMeta[category?.toLowerCase()] || categoryMeta.default;
 };
 
 /* ----------------------------------
@@ -93,9 +91,7 @@ const FeatureCategories = () => {
       {/* Heading */}
       <div className="text-center mb-10">
         <h2 className="text-3xl font-bold">Featured Categories</h2>
-        <p className="text-gray-500 mt-2">
-          Discover products by category
-        </p>
+        <p className="text-gray-500 mt-2">Discover products by category</p>
       </div>
 
       {/* Category Grid */}
@@ -108,18 +104,18 @@ const FeatureCategories = () => {
               key={category}
               onClick={() => handleCategoryClick(category)}
               className="
-                group cursor-pointer rounded-2xl p-6 text-center
+                group cursor-pointer rounded-2xl p-6
                 bg-gradient-to-br from-base-100 to-base-200
                 border border-gray-200
                 shadow-md
                 hover:shadow-xl hover:-translate-y-1
-                transition-all duration-300
+                transition-all duration-300 md:flex gap-4
               "
             >
               {/* Icon */}
               <div
                 className="
-                  mx-auto mb-4 flex items-center justify-center
+                flex items-center justify-center
                   w-14 h-14 rounded-full
                   bg-primary/10 text-primary
                   group-hover:scale-110 transition
@@ -128,15 +124,13 @@ const FeatureCategories = () => {
                 {icon}
               </div>
 
-              {/* Category Name */}
-              <h3 className="text-lg font-semibold capitalize">
-                {category}
-              </h3>
+              <div>
+                {/* Category Name */}
+                <h3 className="text-lg font-semibold capitalize">{category}</h3>
 
-              {/* Designation */}
-              <p className="text-sm text-gray-500 mt-1">
-                {subtitle}
-              </p>
+                {/* Designation */}
+                <p className="text-sm text-gray-500 mt-1">{subtitle}</p>
+              </div>
             </div>
           );
         })}
