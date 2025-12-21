@@ -1,34 +1,60 @@
-// src/components/ui/HeroSection.jsx
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router";
 import heroLottie from "../../assets/Lottie/Hero-lottie.json";
 import Lottie from "lottie-react";
+import { motion } from "framer-motion";
 
 export default function HeroSection() {
   return (
-    <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white">
-      <div className="max-w-7xl mx-auto px-6 pt-16 lg:20 flex flex-col-reverse lg:flex-row items-center gap-8">
-        {/* Left side - Text + Button */}
-        <div className="lg:w-1/2 flex flex-col justify-center">
-          <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
-            Welcome to <span className="text-yellow-400">ShopEase</span>
+    <section className="relative w-full bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-white">
+      <div className="max-w-7xl mx-auto px-6 py-10 lg:py-16 grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
+        {/* Left Content */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="space-y-6"
+        >
+          <span className="inline-block px-4 py-1 text-sm rounded-full bg-white/10 backdrop-blur">
+            🛒 Smart Online Shopping
+          </span>
+
+          <h1 className="text-4xl md:text-5xl xl:text-6xl font-extrabold leading-tight">
+            Shop Smarter with
+            <span className="block text-yellow-400">ShopEase</span>
           </h1>
-          <p className="mt-4 text-lg md:text-xl text-slate-200">
-            Fast, secure, and reliable shopping experience. Discover thousands
-            of products at your fingertips.
+
+          <p className="text-base md:text-lg text-slate-300 max-w-xl">
+            A fast, secure and modern e‑commerce platform where quality products
+            meet seamless shopping experience.
           </p>
-          <div className="mt-6">
-            <Button size="lg">
-              <Link to="/products">Shop Now</Link>
+
+          <div className="flex flex-wrap gap-4">
+            <Button size="lg" className="rounded-2xl px-8">
+              <Link to="/products">Browse Products</Link>
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              className="rounded-2xl px-8 border-white/30 text-white hover:bg-white/10"
+            >
+              Learn More
             </Button>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Right side - Image */}
-        <div className="w-100 h-90 mx-auto">
-          <Lottie animationData={heroLottie} loop={true} />
-        </div>
+        {/* Right Animation */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex justify-center"
+        >
+          <div className="w-full max-w-full">
+            <Lottie animationData={heroLottie} loop />
+          </div>
+        </motion.div>
       </div>
     </section>
   );

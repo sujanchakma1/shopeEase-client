@@ -24,6 +24,7 @@
     "emailjs": "^5.0.0",
     "emailjs-com": "^3.2.0",
     "firebase": "^12.3.0",
+    "framer-motion": "^12.23.26",
     "lottie-react": "^2.4.1",
     "lucide-react": "^0.544.0",
     "motion": "^12.23.18",
