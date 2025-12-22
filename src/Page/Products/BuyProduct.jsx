@@ -1,10 +1,10 @@
 import UseAuth from "@/Hook/UseAuth";
 import UseAxiosSecure from "@/Hook/UseAxiosSecure";
-import Loading from "@/Shared/Loading";
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { toast } from "react-toastify";
+import Loading from "../Loading/Loading";
 
 const BuyProduct = () => {
   const { id } = useParams();

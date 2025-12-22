@@ -1,9 +1,9 @@
 import UseAxiosSecure from "@/Hook/UseAxiosSecure";
-import Loading from "@/Shared/Loading";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router";
 import { toast } from "react-toastify";
 import UseAuth from "@/Hook/UseAuth";
+import Loading from "../Loading/Loading";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -70,8 +70,8 @@ const ProductDetails = () => {
       } else {
         toast.error(`${product.name} Failed to add!`);
       }
-    } catch (error) {
-      toast.error("Add to Cart Error:", error);
+    } catch {
+      toast.error(`${product.name} Failed to add`);
     }
   };
 

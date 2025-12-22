@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { toast } from "react-toastify";
 import UseAxiosSecure from "@/Hook/UseAxiosSecure";
-import Loading from "@/Shared/Loading";
+import Loading from "@/Page/Loading/Loading";
 
 const PaymentForm = () => {
   const navigate = useNavigate();

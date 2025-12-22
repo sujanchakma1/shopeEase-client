@@ -15,13 +15,6 @@ import { RiMenu3Line } from "react-icons/ri";
 const Navbar = () => {
   const { user, logOut } = UseAuth();
   const axiosSecure = UseAxiosSecure();
-  const { data: loginUser = [] } = useQuery({
-    queryKey: ["cartItems", user?.email],
-    queryFn: async () => {
-      const res = await axiosSecure.get(`/user?email=${user.email}`);
-      return res.data;
-    },
-  });
 
   const { data: cartItems = [], isLoading } = useQuery({
     queryKey: ["cartItems", user?.email],
@@ -36,11 +29,6 @@ const Navbar = () => {
     { name: "Products", to: "/products", icon: <ShoppingBag size={12} /> },
     { name: "About", to: "/about", icon: <Info size={12} /> },
     { name: "Contact", to: "/contact", icon: <Phone size={12} /> },
-    {
-      name: "Dashboard",
-      to: "/dashboard",
-      icon: <LuLayoutDashboard size={12} />,
-    },
   ];
   const handleLogout = () => {
     logOut()
@@ -67,8 +55,8 @@ const Navbar = () => {
               <NavLink
                 to={link.to}
                 className={({ isActive }) =>
-                  ` font-medium flex gap-1 hover:text-primary items-center ${
-                    isActive ? " border-b-2 border-slate-300" : ""
+                  ` font-medium flex items-center gap-1 hover:text-primary items-center ${
+                    isActive ? " border-b border-slate-300" : ""
                   }`
                 }
               >
@@ -77,6 +65,20 @@ const Navbar = () => {
               </NavLink>
             </li>
           ))}
+          {user && (
+            <li>
+              <NavLink
+                to="/dashboard"
+                className={({ isActive }) =>
+                  ` font-medium items-center flex gap-1 hover:text-primary items-center ${
+                    isActive ? " border-b border-slate-300" : ""
+                  }`
+                }
+              >
+                <LuLayoutDashboard size={12} /> Dashboard
+              </NavLink>
+            </li>
+          )}
         </ul>
 
         {/* Right buttons */}
@@ -88,7 +90,7 @@ const Navbar = () => {
               <div tabIndex={0} role="button" className="cursor-pointer">
                 <img
                   className="w-10 h-10 rounded-full object-cover"
-                  src={loginUser[0]?.photoURL}
+                  src={user.photoURL}
                   alt="Profile"
                 />
               </div>
@@ -100,11 +102,11 @@ const Navbar = () => {
                   <div className="space-y-2">
                     <img
                       className="w-16 h-16 ml-8 rounded-full object-cover"
-                      src={loginUser[0]?.photoURL}
+                      src={user.photoURL}
                       alt="Profile"
                     />
                     <h2 className="font-semibold text-xl px-3">
-                      {loginUser[0]?.name}
+                      {user.displayName}
                     </h2>
                   </div>
                 </div>
@@ -172,14 +174,14 @@ const Navbar = () => {
       <div className="fixed top-[380px] right-6 bg-primary p-4 rounded-full z-50">
         <NavLink
           to="/cart"
-          className="relative flex flex-col items-center text-white hover:text-secondary"
+          className="relative flex flex-col items-center hover:text-secondary"
         >
           {/* Cart Icon */}
           <IoCartOutline size={28} />
 
           {/* Badge */}
           <span
-            className="absolute -top-2 -right-2 bg-red-600 text-white 
+            className="absolute -top-2 -right-2 bg-red-600  
                      text-xs font-bold w-5 h-5 flex items-center 
                      justify-center rounded-full"
           >
