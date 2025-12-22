@@ -3,6 +3,7 @@ import HeroSection from './HeroSection';
 import FeatureCategories from './FeatureCategories';
 import PopularProducts from './PopularProducts';
 import PartnerMarquee from './Partners';
+import WhyChooseUs from './WhyChooseUs';
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
       <HeroSection></HeroSection>
       <FeatureCategories></FeatureCategories>
       <PopularProducts></PopularProducts>
+      <WhyChooseUs></WhyChooseUs>
       <PartnerMarquee></PartnerMarquee>
     </div>
   );

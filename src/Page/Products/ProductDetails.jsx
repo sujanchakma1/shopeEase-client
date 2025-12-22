@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router";
 import { toast } from "react-toastify";
 import UseAuth from "@/Hook/UseAuth";
 import Loading from "../Loading/Loading";
+import { IoCartOutline } from "react-icons/io5";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -45,7 +46,6 @@ const ProductDetails = () => {
       image,
       price,
       discountPrice,
-      stock,
     } = product;
 
     const productData = {
@@ -57,9 +57,8 @@ const ProductDetails = () => {
       image,
       price,
       discountPrice,
-      stock,
-      userName: user.displayName,
       userEmail: user.email,
+      userName: user.displayName,
     };
 
     try {
@@ -78,7 +77,10 @@ const ProductDetails = () => {
   return (
     <div className="container max-w-7xl mx-auto p-6">
       {/* PRODUCT TOP SECTION */}
-      <div className="grid grid-cols-1 items-center md:grid-cols-2 gap-10 bg-base-200 p-6 rounded-xl shadow">
+      <div
+        className="grid grid-cols-1 items-center md:grid-cols-2 gap-10    bg-gradient-to-br from-base-100 to-base-200
+ p-6 rounded-xl shadow"
+      >
         {/* LEFT: IMAGE */}
         <div className="flex justify-center">
           <img
@@ -136,24 +138,46 @@ const ProductDetails = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
         {recommended.map((item) => (
-          <Link key={item._id} to={`/products/details/${item._id}`}>
-            <div className="bg-base-200 p-4 rounded-lg shadow hover:shadow-md transition">
+          <div className="bg-gradient-to-br from-base-100 to-base-200 p-4 rounded-lg shadow hover:shadow-md duration-300  group">
+            <Link key={item._id} to={`/products/details/${item._id}`}>
+              {" "}
               <img
                 src={item.image}
                 alt={item.name}
-                className="h-40 w-full object-cover rounded"
+                className="h-40 w-full object-cover rounded group-hover:scale-105 duration-300"
               />
-              <h3 className="font-semibold mt-3">{item.name}</h3>
-              <div className="flex items-center gap-2">
-                <span className="text-gray-400 line-through text-sm">
-                  ${product.price}
-                </span>
-                <span className="text-primary  font-bold text-lg">
-                  ${product.discountPrice}
-                </span>
-              </div>
+              <div className="pt-4">
+                <h3 className="font-semibold">{product.name}</h3>
+                <p className="text-sm text-gray-500 line-clamp-1">
+                  {product.description}
+                </p>
+                <div className="flex items-center gap-2 mt-2">
+                  <span className="text-primary font-bold text-lg">
+                    ৳{product.discountPrice}
+                  </span>
+                  {product.price > product.discountPrice && (
+                    <span className="line-through text-gray-400 text-sm">
+                      ৳{product.price}
+                    </span>
+                  )}
+                </div>
+              </div>{" "}
+            </Link>
+            <div className="flex justify-between items-center mt-auto">
+              <button
+                className="cursor-pointer hover:text-secondary"
+                onClick={() => handleAddToCart(product)}
+              >
+                <IoCartOutline size={24} />
+              </button>
+
+              <Link to={`/products/buy/${product._id}`}>
+                <button className="btn btn-primary rounded-lg">
+                  Order Now
+                </button>
+              </Link>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
     </div>
