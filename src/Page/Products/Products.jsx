@@ -1,11 +1,11 @@
 import UseAuth from "@/Hook/UseAuth";
 import UseAxiosSecure from "@/Hook/UseAxiosSecure";
-import Loading from "@/Shared/Loading";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { IoCartOutline } from "react-icons/io5";
 import { Link, useSearchParams } from "react-router";
 import { toast } from "react-toastify";
+import Loading from "../Loading/Loading";
 
 const Products = () => {
   const axiosSecure = UseAxiosSecure();
@@ -49,7 +49,6 @@ const Products = () => {
 
   // ✅ Add to cart
   const handleAddToCart = async (product) => {
-    if (!user) return toast.error("Please login first");
 
     try {
       const res = await axiosSecure.post("/cart", {

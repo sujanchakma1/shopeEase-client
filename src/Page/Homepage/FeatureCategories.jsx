@@ -9,6 +9,7 @@ import { GiClothes } from "react-icons/gi";
 import { FaBook } from "react-icons/fa";
 import { MdChair } from "react-icons/md";
 import { BiCategory } from "react-icons/bi";
+import Loading from "../Loading/Loading";
 
 /* ----------------------------------
    Category Meta (Icon + Designation)
@@ -63,9 +64,7 @@ const FeatureCategories = () => {
 
   if (isLoading) {
     return (
-      <div className="text-center py-20 text-gray-500">
-        Loading categories...
-      </div>
+      <Loading></Loading>
     );
   }
 
