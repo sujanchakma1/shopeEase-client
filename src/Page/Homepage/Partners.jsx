@@ -41,7 +41,7 @@ const MarqueeRow = ({ direction = "left" }) => (
       {[...partners, ...partners].map((item, index) => (
         <div
           key={index}
-          className="flex items-center gap-3 bg-white shadow-sm rounded-lg px-4 py-3 min-w-[160px]"
+          className="flex items-center gap-3 bg-base-200 shadow-sm rounded-lg px-4 py-3 min-w-[160px]"
         >
           <img
             src={item.img}
@@ -60,7 +60,7 @@ const MarqueeRow = ({ direction = "left" }) => (
 
 const PartnerMarquee = () => {
   return (
-    <section className="py-12 bg-gray-50">
+    <section className="py-12">
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-2xl font-bold text-center mb-8">
           Our Partners

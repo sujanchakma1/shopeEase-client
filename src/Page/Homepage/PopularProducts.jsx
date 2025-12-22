@@ -83,7 +83,7 @@ const PopularProducts = () => {
             <div className="flex justify-between items-center mt-4">
               <button
                 onClick={() => handleAddToCart(product)}
-                className="p-3 cursor-pointer hover:text-primary rounded-full duration-200"
+                className="p-3 cursor-pointer hover:text-secondary rounded-full duration-200"
               >
                 <IoCartOutline size={24} />
               </button>
