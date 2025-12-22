@@ -3,8 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import UseAxiosSecure from "@/Hook/UseAxiosSecure";
 import { Link } from "react-router";
 import UseAuth from "@/Hook/UseAuth";
-import Loading from "@/Shared/Loading";
 import Swal from "sweetalert2";
+import Loading from "../Loading/Loading";
 
 const Cart = () => {
   const axiosSecure = UseAxiosSecure();

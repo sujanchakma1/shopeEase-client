@@ -1,15 +1,17 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router";
-import { FaShoppingCart } from "react-icons/fa";
 import { toast } from "react-toastify";
 import UseAxiosSecure from "@/Hook/UseAxiosSecure";
 import { IoCartOutline } from "react-icons/io5";
+import Loading from "../Loading/Loading";
+import UseAuth from "@/Hook/UseAuth";
 
 const PopularProducts = () => {
   const axiosSecure = UseAxiosSecure();
+  const {user} = UseAuth()
 
-  const { data: products = [], isLoading } = useQuery({
+  const { data: products = [], isLoading,refetch } = useQuery({
     queryKey: ["popularProducts"],
     queryFn: async () => {
       const res = await axiosSecure.get("/product");
@@ -29,22 +31,23 @@ const PopularProducts = () => {
         image: product.image,
         price: product.price,
         discountPrice: product.discountPrice,
-        userName: "Sujan",
-        userEmail: "sujanckz926@gmail.com",
+        userName: user.displayName,
+        userEmail: user.email,
       };
 
       const res = await axiosSecure.post("/cart", cartItem);
       if (res.data.insertedId) {
         toast.success(`${product.name} Added to cart!`);
+        refetch()
       } else {
         toast.error(`${product.name} Failed to add!`);
       }
-    } catch (error) {
-      toast.error("Add to Cart Error:", error);
+    } catch {
+      toast.error(`${product.name} Failed to add`);
     }
   };
 
-  if (isLoading) return <p className="text-center py-10">Loading...</p>;
+  if (isLoading) return <Loading></Loading>;
 
   return (
     <div className="container mx-auto px-6 py-10">

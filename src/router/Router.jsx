@@ -14,6 +14,7 @@ import Payments from "@/Page/Dashboard/User/Payments";
 import Orders from "@/Page/Dashboard/User/Orders";
 import Contact from "@/Page/Contact/Contact";
 import Cart from "@/Page/Cart/Cart";
+import PrivateRoute from "@/Routes/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -43,15 +44,27 @@ const router = createBrowserRouter([
       },
       {
         path: "products/buy/:id",
-        Component: BuyProduct,
+        element: (
+          <PrivateRoute>
+            <BuyProduct></BuyProduct>
+          </PrivateRoute>
+        ),
       },
       {
         path: "products/details/:id",
-        Component: ProductDetails,
+        element: (
+          <PrivateRoute>
+            <ProductDetails></ProductDetails>
+          </PrivateRoute>
+        ),
       },
       {
         path: "cart",
-        Component: Cart,
+        element: (
+          <PrivateRoute>
+            <Cart></Cart>
+          </PrivateRoute>
+        ),
       },
     ],
   },

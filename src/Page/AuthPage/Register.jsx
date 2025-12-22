@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { createUser, logOut } = UseAuth();
+  const { createUser, logOut, updateUserProfile } = UseAuth();
   const axiosSecure = UseAxiosSecure();
   const navigate = useNavigate();
   // react-hook-form setup
@@ -24,6 +24,12 @@ const Register = () => {
     createUser(email, password)
       .then(async (result) => {
         console.log(result.user);
+        const profileInfo = {
+          displayName: name,
+          photoURL: photoURL,
+        };
+
+        await updateUserProfile(profileInfo);
 
         const userData = {
           name,
@@ -46,7 +52,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-8 ">
+    <div className="flex items-center justify-center min-h-screen py-16 ">
       <div className="w-full max-w-md bg-base-200 rounded-2xl shadow-lg p-8">
         {/* Title */}
         <div className="text-center mb-6">

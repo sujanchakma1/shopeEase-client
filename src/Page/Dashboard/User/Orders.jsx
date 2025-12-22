@@ -2,11 +2,11 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import UseAxiosSecure from "@/Hook/UseAxiosSecure";
 import UseAuth from "@/Hook/UseAuth";
-import Loading from "@/Shared/Loading";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
 import { FaMoneyCheckAlt } from "react-icons/fa";
 import { TiCancelOutline } from "react-icons/ti";
+import Loading from "@/Page/Loading/Loading";
 
 
 const Orders = () => {
