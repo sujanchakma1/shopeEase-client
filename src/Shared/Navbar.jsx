@@ -96,7 +96,7 @@ const Navbar = () => {
               </div>
               <div
                 tabIndex={0}
-                className="menu space-y-5 dropdown-content bg-base-300 rounded-xl z-1 mt-5 w-74 p-2 shadow-sm"
+                className="menu space-y-5 dropdown-content bg-gradient-to-br from-base-100 to-base-200 rounded-xl z-1 mt-5 w-74 p-2 shadow-sm"
               >
                 <div className="flex justify-center">
                   <div className="space-y-2">
@@ -144,7 +144,7 @@ const Navbar = () => {
                 </div>
                 <div
                   tabIndex={-1}
-                  className="menu space-y-5 dropdown-content bg-base-300 rounded-xl z-1 mt-9 w-74 p-2 shadow-sm"
+                  className="menu space-y-5 dropdown-content bg-gradient-to-br from-base-100 to-base-200 rounded-xl z-1 mt-9 w-74 p-2 shadow-sm"
                 >
                   {links.map((link) => (
                     <h2 key={link.to}>
@@ -171,7 +171,7 @@ const Navbar = () => {
         </div>
       </div>
       {/* Cart */}
-      <div className="fixed top-[380px] right-6 bg-primary p-4 rounded-full z-50">
+      <div className="fixed top-[380px] right-6 bg-primary p-4 px-7 rounded-full z-50">
         <NavLink
           to="/cart"
           className="relative flex flex-col items-center hover:text-secondary"

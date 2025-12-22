@@ -105,7 +105,6 @@ const FeatureCategories = () => {
               className="
                 group cursor-pointer rounded-2xl p-6
                 bg-gradient-to-br from-base-100 to-base-200
-                border border-gray-200
                 shadow-md
                 hover:shadow-xl hover:-translate-y-1
                 transition-all duration-300 md:flex gap-4

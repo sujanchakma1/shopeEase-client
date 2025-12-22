@@ -42,7 +42,6 @@ const Contact = () => {
       <div
         className="group cursor-pointer rounded-2xl p-6 text-center
                 bg-gradient-to-br from-base-100 to-base-200
-                border border-gray-200
                 shadow-md
                 hover:shadow-xl hover:-translate-y-1
                 transition-all duration-300"
@@ -165,7 +164,7 @@ const Contact = () => {
         <iframe
           title="Chattogram Polytechnic Institute Map"
           src="https://www.google.com/maps?q=Chattogram+Polytechnic+Institute,Chittagong,Bangladesh&z=16&output=embed"
-          className="w-full h-[420px] rounded-2xl border shadow"
+          className="w-full h-[420px] rounded-2xl shadow"
           loading="lazy"
         ></iframe>
       </div>
