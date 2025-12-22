@@ -1,31 +1,52 @@
-// src/components/ui/Navbar.jsx
 import React from "react";
-import { NavLink, useNavigate } from "react-router"; // ensure react-router-dom v6+
+import { Link, NavLink, useNavigate } from "react-router";
 import { FaUser } from "react-icons/fa";
 import UseAuth from "@/Hook/UseAuth";
 import { LogOut } from "lucide-react";
 import Logo from "./Logo";
 import ThemeControl from "./ThemeControl";
 import { IoCartOutline } from "react-icons/io5";
-import { FiMenu } from "react-icons/fi";
 import { LuLayoutDashboard } from "react-icons/lu";
-import { House, ShoppingBag, ShoppingCart, Info, Phone } from "lucide-react";
+import { House, ShoppingBag, Info, Phone } from "lucide-react";
+import UseAxiosSecure from "@/Hook/UseAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import { RiMenu3Line } from "react-icons/ri";
 
 const Navbar = () => {
   const { user, logOut } = UseAuth();
+  const axiosSecure = UseAxiosSecure();
+  const { data: loginUser = [] } = useQuery({
+    queryKey: ["cartItems", user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/user?email=${user.email}`);
+      return res.data;
+    },
+  });
+
+  const { data: cartItems = [], isLoading } = useQuery({
+    queryKey: ["cartItems", user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/cart?email=${user.email}`);
+      return res.data;
+    },
+  });
   const navigate = useNavigate();
   const links = [
-    { name: "Home", to: "/", icon: <House size={16} /> },
-    { name: "Products", to: "/products", icon: <ShoppingBag size={16} /> },
-    { name: "About", to: "/about", icon: <Info size={16} /> },
-    { name: "Contact", to: "/contact", icon: <Phone size={16} /> },
-    { name: "Dashboard", to: "/dashboard", icon: <LuLayoutDashboard /> },
+    { name: "Home", to: "/", icon: <House size={12} /> },
+    { name: "Products", to: "/products", icon: <ShoppingBag size={12} /> },
+    { name: "About", to: "/about", icon: <Info size={12} /> },
+    { name: "Contact", to: "/contact", icon: <Phone size={12} /> },
+    {
+      name: "Dashboard",
+      to: "/dashboard",
+      icon: <LuLayoutDashboard size={12} />,
+    },
   ];
   const handleLogout = () => {
     logOut()
       .then((res) => {
         localStorage.removeItem("access-token");
-        navigate("/login");
+        navigate("/");
         console.log(res.user);
       })
       .catch((err) => {
@@ -36,59 +57,8 @@ const Navbar = () => {
   return (
     <nav className="bg-base-200 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
-        {/* Logo & Mobile Menu */}
-        <div className="flex gap-2 items-center">
-          {/* Mobile dropdown */}
-          <div className="lg:hidden">
-            <div className="drawer lg:drawer-open">
-              <input
-                id="my-drawer-4"
-                type="checkbox"
-                className="drawer-toggle"
-              />
-              <div className="drawer-content">
-                {/* <!-- Navbar --> */}
-                <label
-                  htmlFor="my-drawer-4"
-                  aria-label="open sidebar"
-                  className="btn btn-square btn-ghost"
-                >
-                  {/* <!-- Sidebar toggle icon --> */}
-                  <FiMenu size={24} />
-                </label>
-              </div>
-
-              <div className="drawer-side is-drawer-close:overflow-visible">
-                <label
-                  htmlFor="my-drawer-4"
-                  aria-label="close sidebar"
-                  className="drawer-overlay"
-                ></label>
-                <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
-                  {/* <!-- Sidebar content here --> */}
-                  <ul className="menu w-full space-y-4 grow">
-                    {links.map((link) => (
-                      <li key={link.to}>
-                        <NavLink
-                          to={link.to}
-                          className={({ isActive }) =>
-                            ` flex gap-2 items-center ${
-                              isActive ? " border-b-2 border-slate-300" : ""
-                            }`
-                          }
-                        >
-                          {link.icon}
-                          {link.name}
-                        </NavLink>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <Logo></Logo>
-        </div>
+        {/* Logo &  */}
+        <Logo></Logo>
 
         {/* Desktop Links */}
         <ul className="hidden lg:flex space-x-6">
@@ -97,7 +67,7 @@ const Navbar = () => {
               <NavLink
                 to={link.to}
                 className={({ isActive }) =>
-                  ` font-medium flex gap-1 items-center ${
+                  ` font-medium flex gap-1 hover:text-primary items-center ${
                     isActive ? " border-b-2 border-slate-300" : ""
                   }`
                 }
@@ -112,38 +82,112 @@ const Navbar = () => {
         {/* Right buttons */}
         <div className="flex items-center space-x-4">
           <ThemeControl></ThemeControl>
-          <NavLink to="/cart" className="hover:text-primary ">
-            <IoCartOutline size={28} />
-          </NavLink>
+
           {user ? (
-            <div className="dropdown dropdown-end">
+            <div className="dropdown text-xl dropdown-end">
               <div tabIndex={0} role="button" className="cursor-pointer">
                 <img
-                  className="w-12 h-12 rounded-full object-cover"
-                  src={user.photoURL}
+                  className="w-10 h-10 rounded-full object-cover"
+                  src={loginUser[0]?.photoURL}
                   alt="Profile"
                 />
               </div>
-              <ul
+              <div
                 tabIndex={0}
-                className="menu space-y-5 dropdown-content bg-base-300 rounded-box z-1 mt-4 w-52 p-2 shadow-sm"
+                className="menu space-y-5 dropdown-content bg-base-300 rounded-xl z-1 mt-5 w-74 p-2 shadow-sm"
               >
-                <li className="font-semibold text-xl px-3">
-                  {user.displayName}
-                </li>
-                <li>
-                  <button onClick={handleLogout} className="hover:text-primary">
-                    <LogOut size={24} />
-                  </button>
-                </li>
-              </ul>
+                <div className="flex justify-center">
+                  <div className="space-y-2">
+                    <img
+                      className="w-16 h-16 ml-8 rounded-full object-cover"
+                      src={loginUser[0]?.photoURL}
+                      alt="Profile"
+                    />
+                    <h2 className="font-semibold text-xl px-3">
+                      {loginUser[0]?.name}
+                    </h2>
+                  </div>
+                </div>
+                {links.map((link) => (
+                  <h2 key={link.to}>
+                    <NavLink
+                      to={link.to}
+                      className=" font-medium flex gap-1 items-center border-b-1 border-b-gray-500 p-1 hover:text-primary"
+                    >
+                      {link.icon}
+                      {link.name}
+                    </NavLink>
+                  </h2>
+                ))}
+
+                <button
+                  onClick={handleLogout}
+                  className="hover:cursor-pointer font-medium flex gap-1 items-center text-red-500 p-1"
+                >
+                  <LogOut size={14} /> LogOut
+                </button>
+              </div>
             </div>
           ) : (
-            <NavLink to="/login" className="hover:text-primary">
-              <FaUser className="mr-2" size={24} />
-            </NavLink>
+            <div className="text-xl">
+              <NavLink to="/login" className="hidden lg:flex">
+                <button className="flex items-center btn btn-primary rounded-lg">
+                  <FaUser />
+                  Login
+                </button>
+              </NavLink>
+              <div className="dropdown dropdown-end flex lg:hidden">
+                <div tabIndex={0} role="button" className="cursor-pointer">
+                  <RiMenu3Line size={28} />
+                </div>
+                <div
+                  tabIndex={-1}
+                  className="menu space-y-5 dropdown-content bg-base-300 rounded-xl z-1 mt-9 w-74 p-2 shadow-sm"
+                >
+                  {links.map((link) => (
+                    <h2 key={link.to}>
+                      <NavLink
+                        to={link.to}
+                        className=" font-medium flex gap-1 items-center border-b-1 border-b-gray-500 p-1 hover:text-primary"
+                      >
+                        {link.icon}
+                        {link.name}
+                      </NavLink>
+                    </h2>
+                  ))}
+
+                  <NavLink to="/login">
+                    <button className="w-full flex items-center btn btn-primary rounded-lg">
+                      <FaUser />
+                      Login
+                    </button>
+                  </NavLink>
+                </div>
+              </div>
+            </div>
           )}
         </div>
+      </div>
+      {/* Cart */}
+      <div className="fixed top-[380px] right-6 bg-primary p-4 rounded-full z-50">
+        <NavLink
+          to="/cart"
+          className="relative flex flex-col items-center text-white hover:text-secondary"
+        >
+          {/* Cart Icon */}
+          <IoCartOutline size={28} />
+
+          {/* Badge */}
+          <span
+            className="absolute -top-2 -right-2 bg-red-600 text-white 
+                     text-xs font-bold w-5 h-5 flex items-center 
+                     justify-center rounded-full"
+          >
+            {isLoading ? 0 : cartItems.length}
+          </span>
+
+          <h2 className="font-semibold text-sm mt-1">Cart</h2>
+        </NavLink>
       </div>
     </nav>
   );
