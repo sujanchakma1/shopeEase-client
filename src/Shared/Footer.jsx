@@ -7,6 +7,7 @@ import {
   FaPhoneAlt,
   FaMapMarkerAlt,
 } from "react-icons/fa";
+import Logo from "./Logo";
 
 export default function Footer() {
   return (
@@ -16,7 +17,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="space-y-5">
-            <h3 className="text-2xl font-bold text-white">ShopEase</h3>
+            <Logo></Logo>
             <p className="text-sm leading-relaxed">
               Shopping made easy — curated products, fast delivery, and secure
               checkout. Trusted by thousands of happy customers.

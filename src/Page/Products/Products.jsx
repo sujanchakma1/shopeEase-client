@@ -149,7 +149,7 @@ const Products = () => {
 
             <div className="flex justify-between items-center mt-auto">
               <button
-                className="cursor-pointer hover:text-primary"
+                className="cursor-pointer hover:text-secondary"
                 onClick={() => handleAddToCart(product)}
               >
                 <IoCartOutline size={24} />

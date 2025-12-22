@@ -31,16 +31,14 @@ export default function HeroSection() {
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <Button size="lg" className="rounded-2xl px-8">
+            <button className="rounded-lg btn btn-primary">
               <Link to="/products">Browse Products</Link>
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="rounded-2xl px-8 border-white/30 text-white hover:bg-white/10"
+            </button>
+            <button
+              className="rounded-lg btn-secondary btn btn-outline"
             >
-              Learn More
-            </Button>
+              <Link to="/about"> Learn More</Link>
+            </button>
           </div>
         </motion.div>
 
