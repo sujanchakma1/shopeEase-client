@@ -49,7 +49,6 @@ const Products = () => {
 
   // ✅ Add to cart
   const handleAddToCart = async (product) => {
-
     try {
       const res = await axiosSecure.post("/cart", {
         productId: product._id,
@@ -120,7 +119,7 @@ const Products = () => {
         {products.map((product) => (
           <div
             key={product._id}
-            className="bg-base-200 hover:shadow-xl duration-300  group shadow rounded-xl overflow-hidden flex flex-col p-4"
+            className="bg-gradient-to-br from-base-100 to-base-200 hover:shadow-xl duration-300  group shadow rounded-xl overflow-hidden flex flex-col p-4"
           >
             <Link to={`/products/details/${product._id}`}>
               <img

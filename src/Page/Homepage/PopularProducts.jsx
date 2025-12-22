@@ -9,9 +9,13 @@ import UseAuth from "@/Hook/UseAuth";
 
 const PopularProducts = () => {
   const axiosSecure = UseAxiosSecure();
-  const {user} = UseAuth()
+  const { user } = UseAuth();
 
-  const { data: products = [], isLoading,refetch } = useQuery({
+  const {
+    data: products = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["popularProducts"],
     queryFn: async () => {
       const res = await axiosSecure.get("/product");
@@ -31,14 +35,14 @@ const PopularProducts = () => {
         image: product.image,
         price: product.price,
         discountPrice: product.discountPrice,
-        userName: user.displayName,
         userEmail: user.email,
+        userName: user.displayName,
       };
 
       const res = await axiosSecure.post("/cart", cartItem);
       if (res.data.insertedId) {
         toast.success(`${product.name} Added to cart!`);
-        refetch()
+        refetch();
       } else {
         toast.error(`${product.name} Failed to add!`);
       }
@@ -50,14 +54,14 @@ const PopularProducts = () => {
   if (isLoading) return <Loading></Loading>;
 
   return (
-    <div className="container mx-auto px-6 py-10">
+    <div className="container max-w-7xl mx-auto px-6 py-10">
       <h2 className="text-3xl font-bold mb-8 text-center">Popular Products</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {products.map((product) => (
           <div
             key={product._id}
-            className="bg-base-200 shadow-md rounded-xl p-4 hover:shadow-xl duration-300  group"
+            className="bg-gradient-to-br from-base-100 to-base-200 shadow-md rounded-xl p-4 hover:shadow-xl duration-300  group"
           >
             <Link to={`/products/details/${product._id}`}>
               <img
