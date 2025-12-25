@@ -6,6 +6,8 @@ import {
   FaTwitter,
   FaPhoneAlt,
   FaMapMarkerAlt,
+  FaLinkedin,
+  FaGithub,
 } from "react-icons/fa";
 import Logo from "./Logo";
 
@@ -22,39 +24,12 @@ export default function Footer() {
               Shopping made easy — curated products, fast delivery, and secure
               checkout. Trusted by thousands of happy customers.
             </p>
-            <Link
-              to="/products"
-              className="inline-block mt-2 text-sm font-semibold hover:text-primary text-blue-500"
-            >
-              Browse Products →
-            </Link>
-          </div>
-
-          {/* Support */}
-          <div>
-            <h4 className="text-sm tracking-widest text-white mb-5">SUPPORT</h4>
-            <div className="flex items-center gap-4 mb-4 p-4 rounded-xl border border-white/10">
-              <FaPhoneAlt className="text-primary" />
-              <div>
-                <p className="text-xs text-slate-400">9 AM – 9 PM</p>
-                <p className="font-semibold text-white">+880 1570000000</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 p-4 rounded-xl border border-white/10">
-              <FaMapMarkerAlt className="text-primary" />
-              <div>
-                <p className="text-sm">Find Our Store</p>
-                <p className="font-semibold text-white">
-                  Chattogram, Bangladesh
-                </p>
-              </div>
-            </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-sm tracking-widest text-white mb-5">
-              QUICK LINKS
+            <h4 className="text-lg tracking-widest text-primary font-semibold mb-5">
+              Quick Links
             </h4>
             <ul className="space-y-3 text-sm">
               <li>
@@ -80,10 +55,39 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Need Help */}
+          <div>
+            <h4 className="text-lg tracking-widest text-primary font-semibold mb-5">
+              Need Help?
+            </h4>
+            <ul className="space-y-3 text-sm">
+              <li>
+                <Link to="/privacy-policy" className="hover:text-primary">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/terms-conditions" className="hover:text-primary">
+                  Term & Condition
+                </Link>
+              </li>
+              <li>
+                <Link to="/track-your-order" className="hover:text-primary">
+                  Track Your Order
+                </Link>
+              </li>
+              <li>
+                <Link to="/return-refund-policy" className="hover:text-primary">
+                  Return & Refund Policy
+                </Link>
+              </li>
+            </ul>
+          </div>
+
           {/* Stay Connected */}
           <div>
-            <h4 className="text-sm tracking-widest text-white mb-5">
-              STAY CONNECTED
+            <h4 className="text-lg tracking-widest text-primary font-semibold mb-5">
+              Stay Connected
             </h4>
             <p className="text-sm mb-4">
               Subscribe & follow us to get latest offers and updates.
@@ -93,19 +97,19 @@ export default function Footer() {
                 className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-primary transition"
                 href="#"
               >
-                <FaFacebookF />
+                <FaFacebookF size={18} />
               </a>
               <a
                 className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-primary transition"
                 href="#"
               >
-                <FaTwitter />
+                <FaGithub size={18} />
               </a>
               <a
                 className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-primary transition"
                 href="#"
               >
-                <FaInstagram />
+                <FaLinkedin size={18} />
               </a>
             </div>
           </div>
@@ -115,23 +119,12 @@ export default function Footer() {
         <div className="border-t border-white/10 my-10" />
 
         {/* Bottom */}
-        <div className="flex flex-col sm:flex-row items-center justify-between text-sm gap-4">
-          <p className="text-slate-400">
+        <div className=" text-center text-sm ">
+          <p className="text-slate-400 text-center">
             © {new Date().getFullYear()} ShopEase. All rights reserved.
           </p>
-          <div className="flex gap-4">
-            <Link to="/terms" className="hover:text-primary">
-              Terms
-            </Link>
-            <Link to="/privacy-policy" className="hover:text-primary">
-              Privacy
-            </Link>
-            <Link to="/support" className="hover:text-primary">
-              Support
-            </Link>
-          </div>
         </div>
       </div>
     </footer>
-  );
+  )
 }

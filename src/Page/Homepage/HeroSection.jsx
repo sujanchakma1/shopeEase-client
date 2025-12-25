@@ -32,7 +32,7 @@ export default function HeroSection() {
 
           <div className="flex flex-wrap gap-4">
             <button className="rounded-lg btn btn-primary">
-              <Link to="/products">Browse Products</Link>
+              <Link to="/products">Browse Products →</Link>
             </button>
             <button
               className="rounded-lg btn-secondary btn btn-outline"

@@ -49,13 +49,13 @@ const Navbar = () => {
         <Logo></Logo>
 
         {/* Desktop Links */}
-        <ul className="hidden lg:flex space-x-6">
+        <div className="hidden lg:flex space-x-4">
           {links.map((link) => (
-            <li key={link.to}>
+            <h2 key={link.to}>
               <NavLink
                 to={link.to}
                 className={({ isActive }) =>
-                  ` font-medium flex items-center gap-1 hover:text-primary items-center ${
+                  `flex items-center font-medium gap-2 hover:text-primary  ${
                     isActive ? " border-b border-slate-300" : ""
                   }`
                 }
@@ -63,23 +63,23 @@ const Navbar = () => {
                 {link.icon}
                 {link.name}
               </NavLink>
-            </li>
+            </h2>
           ))}
           {user && (
-            <li>
+            <h2>
               <NavLink
                 to="/dashboard"
                 className={({ isActive }) =>
-                  ` font-medium items-center flex gap-1 hover:text-primary items-center ${
+                  ` flex gap-2 font-medium hover:text-primary items-center ${
                     isActive ? " border-b border-slate-300" : ""
                   }`
                 }
               >
                 <LuLayoutDashboard size={12} /> Dashboard
               </NavLink>
-            </li>
+            </h2>
           )}
-        </ul>
+        </div>
 
         {/* Right buttons */}
         <div className="flex items-center space-x-4">
@@ -114,7 +114,7 @@ const Navbar = () => {
                   <h2 key={link.to}>
                     <NavLink
                       to={link.to}
-                      className=" font-medium flex gap-1 items-center border-b-1 border-b-gray-500 p-1 hover:text-primary"
+                      className=" flex gap-2 items-center border-b-1 border-b-gray-500 p-1 hover:text-primary"
                     >
                       {link.icon}
                       {link.name}
@@ -124,7 +124,7 @@ const Navbar = () => {
 
                 <button
                   onClick={handleLogout}
-                  className="hover:cursor-pointer font-medium flex gap-1 items-center text-red-500 p-1"
+                  className="hover:cursor-pointer font-medium flex gap-2 items-center text-red-500 p-1"
                 >
                   <LogOut size={14} /> LogOut
                 </button>
@@ -150,7 +150,7 @@ const Navbar = () => {
                     <h2 key={link.to}>
                       <NavLink
                         to={link.to}
-                        className=" font-medium flex gap-1 items-center border-b-1 border-b-gray-500 p-1 hover:text-primary"
+                        className="flex gap-2 items-center border-b-1 border-b-gray-500 p-1 hover:text-primary"
                       >
                         {link.icon}
                         {link.name}

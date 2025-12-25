@@ -10,7 +10,7 @@ import {
 } from "react-icons/fa";
 import { useEffect } from "react";
 import sujan from "../../assets/Team/Sujan.png";
-import akash from "../../assets/Team/akash.png";
+import akash from "../../assets/Team/akash.jpeg";
 import jisa from "../../assets/Team/Jisa.jpg";
 import onik from "../../assets/Team/onik.png";
 import masud from "../../assets/Team/masud.png";
