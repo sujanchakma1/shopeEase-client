@@ -115,7 +115,7 @@ const FeatureCategories = () => {
                 className="
                 flex items-center justify-center
                   w-14 h-14 rounded-full
-                  bg-primary/10 text-primary
+                  bg-primary/10 text-secondary
                   group-hover:scale-110 transition
                 "
               >
