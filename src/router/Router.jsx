@@ -15,6 +15,9 @@ import Orders from "@/Page/Dashboard/User/Orders";
 import Contact from "@/Page/Contact/Contact";
 import Cart from "@/Page/Cart/Cart";
 import PrivateRoute from "@/Routes/PrivateRoute";
+import ErrorPage from "@/Shared/ErrorPage";
+import PrivacyPolicy from "@/Page/PrivacyPolicy/PrivacyPolicy";
+import TermsConditions from "@/Page/TermsConditions/TermsConditions";
 
 const router = createBrowserRouter([
   {
@@ -66,6 +69,14 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "privacy-policy",
+        Component: PrivacyPolicy,
+      },
+      {
+        path: "terms-conditions",
+        Component: TermsConditions,
+      },
     ],
   },
   {
@@ -82,6 +93,10 @@ const router = createBrowserRouter([
         Component: Orders,
       },
     ],
+  },
+  {
+    path: "*",
+    Component: ErrorPage,
   },
 ]);
 
