@@ -9,7 +9,6 @@ import ProductDetails from "@/Page/Products/ProductDetails";
 import BuyProduct from "@/Page/Products/BuyProduct";
 import About from "@/Page/About/About";
 import DashboardLayout from "@/Layout/DashboardLayout";
-import Overview from "@/Page/Dashboard/Overview";
 import Payments from "@/Page/Dashboard/User/Payments";
 import Orders from "@/Page/Dashboard/User/Orders";
 import Contact from "@/Page/Contact/Contact";
@@ -18,6 +17,11 @@ import PrivateRoute from "@/Routes/PrivateRoute";
 import ErrorPage from "@/Shared/ErrorPage";
 import PrivacyPolicy from "@/Page/PrivacyPolicy/PrivacyPolicy";
 import TermsConditions from "@/Page/TermsConditions/TermsConditions";
+import UserHome from "@/Page/Dashboard/User/UserHome";
+import AdminRoute from "@/Routes/AdminRoute";
+import AdminHome from "@/Page/Dashboard/Admin/AdminHome";
+import DashboardIndexRedirect from "@/Page/Dashboard/DashboardIndexRedirect/DashboardIndexRedirect";
+import UserRoute from "@/Routes/UserRoute";
 
 const router = createBrowserRouter([
   {
@@ -83,7 +87,23 @@ const router = createBrowserRouter([
     path: "dashboard",
     Component: DashboardLayout,
     children: [
-      { index: true, Component: Overview },
+      { index: true, Component: DashboardIndexRedirect },
+      {
+        path: "user-home",
+        element: (
+          <UserRoute>
+            <UserHome></UserHome>
+          </UserRoute>
+        ),
+      },
+      {
+        path: "admin-home",
+        element: (
+          <AdminRoute>
+            <AdminHome></AdminHome>
+          </AdminRoute>
+        ),
+      },
       {
         path: "payments/:orderId",
         Component: Payments,
