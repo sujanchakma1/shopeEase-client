@@ -171,7 +171,7 @@ const Navbar = () => {
         </div>
       </div>
       {/* Cart */}
-      <div className="fixed top-[380px] right-6 bg-primary p-4 px-7 rounded-full z-50">
+      <div className="fixed top-[500px] right-6 bg-primary p-2 px-5 rounded-full z-50">
         <NavLink
           to="/cart"
           className="relative flex flex-col items-center hover:text-secondary"
