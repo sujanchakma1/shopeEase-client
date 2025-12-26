@@ -2,9 +2,9 @@ import Logo from "@/Shared/Logo";
 import React from "react";
 import { NavLink } from "react-router";
 
-const Sidebar = ({ onClose }) => {
+const UserSidebar = ({ onClose }) => {
   const menu = [
-    { label: "Dashboard", path: "/dashboard" },
+    { label: "Dashboard", path: "/dashboard/user-home" },
     { label: "My Orders", path: "/dashboard/orders" },
   ];
 
@@ -22,7 +22,7 @@ const Sidebar = ({ onClose }) => {
             onClick={() => onClose && onClose()}
             className={({ isActive }) =>
               `p-2 rounded ${
-                isActive ? "bg-blue-600 text-white" : "text-gray-700"
+                isActive ? "bg-blue-600 text-white" : ""
               }`
             }
           >
@@ -34,4 +34,4 @@ const Sidebar = ({ onClose }) => {
   );
 };
 
-export default Sidebar;
+export default UserSidebar;
