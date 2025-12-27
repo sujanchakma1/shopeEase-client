@@ -51,7 +51,7 @@ const UpdateProduct = () => {
           <label className="label font-medium">Product Name</label>
           <input
             {...register("name", { required: true })}
-            className="input input-bordered w-full"
+            className="input input-bordered w-full rounded-lg"
             defaultValue={`${product.name}`}
           />
         </div>
@@ -61,7 +61,7 @@ const UpdateProduct = () => {
           <label className="label font-medium">Image URL</label>
           <input
             {...register("image", { required: true })}
-            className="input input-bordered w-full"
+            className="input input-bordered w-full rounded-lg"
             defaultValue={`${product.image}`}
           />
         </div>
@@ -71,7 +71,7 @@ const UpdateProduct = () => {
           <label className="label font-medium">Category</label>
           <select
             {...register("category")}
-            className="select select-bordered w-full"
+            className="select select-bordered w-full rounded-lg"
             defaultValue={`${product.category}`}
           >
             <option value="Electronics">Electronics</option>
@@ -86,7 +86,7 @@ const UpdateProduct = () => {
           <label className="label font-medium">Brand</label>
           <input
             {...register("brand")}
-            className="input input-bordered w-full"
+            className="input input-bordered w-full rounded-lg"
             defaultValue={`${product.brand}`}
           />
         </div>
@@ -98,7 +98,7 @@ const UpdateProduct = () => {
             <input
               type="number"
               {...register("price")}
-              className="input input-bordered w-full"
+              className="input input-bordered w-full rounded-lg"
               defaultValue={`${product.price}`}
             />
           </div>
@@ -108,7 +108,7 @@ const UpdateProduct = () => {
             <input
               type="number"
               {...register("discountPrice")}
-              className="input input-bordered w-full"
+              className="input input-bordered w-full rounded-lg"
               defaultValue={`${product.discountPrice}`}
             />
           </div>
@@ -120,7 +120,7 @@ const UpdateProduct = () => {
           <input
             type="number"
             {...register("stock")}
-            className="input input-bordered w-full"
+            className="input input-bordered w-full rounded-lg"
             defaultValue={`${product.stock}`}
           />
         </div>
@@ -130,7 +130,7 @@ const UpdateProduct = () => {
           <label className="label font-medium">Description</label>
           <textarea
             {...register("description")}
-            className="textarea textarea-bordered w-full"
+            className="textarea textarea-bordered w-full rounded-lg"
             rows={4}
             defaultValue={`${product.description}`}
           />

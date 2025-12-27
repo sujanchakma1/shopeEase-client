@@ -8,7 +8,6 @@ import { FaMoneyCheckAlt } from "react-icons/fa";
 import { TiCancelOutline } from "react-icons/ti";
 import Loading from "@/Page/Loading/Loading";
 
-
 const Orders = () => {
   const axiosSecure = UseAxiosSecure();
   const { user } = UseAuth();
@@ -84,73 +83,75 @@ const Orders = () => {
     <div className="max-w-7xl mx-auto">
       <h2 className="text-2xl font-semibold mb-4">My Orders</h2>
 
-      {orders.length === 0 && <p className="text-gray-600 text-center">No orders found.</p>}
-
-      <div className="overflow-x-auto shadow rounded-lg">
-        <table className="table w-full">
-          <thead className="bg-base-200">
-            <tr>
-              <th>#</th>
-              <th>Product</th>
-              <th>Total Price</th>
-              <th>Quantity</th>
-              <th>Payment</th>
-              <th>Confirmation</th>
-              <th>Date</th>
-              <th>Pay Now</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {orders.map((order, index) => (
-              <tr key={order._id}>
-                <td>{index + 1}</td>
-
-                <td>
-                  <Link
-                    to={`/products/details/${order.productId}`}
-                    className="text-blue-500 underline"
-                  >
-                    View Product
-                  </Link>
-                </td>
-
-                <td>৳{order.totalPrice}</td>
-                <td>{order.quantity}</td>
-
-                <td>{statusBadge(order.payment_status)}</td>
-                <td>{statusBadge(order.confirmation_status)}</td>
-
-                <td>{new Date(order.date).toLocaleString()}</td>
-
-                <td className="flex gap-2">
-                  {order.payment_status === "Paid" ? (
-                    <button disabled className="btn btn-sm btn-disabled">
-                      Paid
-                    </button>
-                  ) : (
-                    <>
-                      <Link to={`/dashboard/payments/${order._id}`}>
-                        <button className="btn btn-sm  btn-primary">
-                          <FaMoneyCheckAlt />
-                          Pay
-                        </button>
-                      </Link>
-                      <button
-                        className="btn btn-sm btn-error text-white"
-                        onClick={() => cancelOrder(order._id)}
-                      >
-                        <TiCancelOutline size={18} />
-                        Cancel
-                      </button>
-                    </>
-                  )}
-                </td>
+      {orders.length === 0 ? (
+        <p className="text-gray-600 text-center">No orders found.</p>
+      ) : (
+        <div className="overflow-x-auto shadow rounded-lg">
+          <table className="table w-full">
+            <thead className="bg-base-200">
+              <tr>
+                <th>#</th>
+                <th>Product</th>
+                <th>Total Price</th>
+                <th>Quantity</th>
+                <th>Payment</th>
+                <th>Confirmation</th>
+                <th>Date</th>
+                <th>Pay Now</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+
+            <tbody>
+              {orders.map((order, index) => (
+                <tr key={order._id}>
+                  <td>{index + 1}</td>
+
+                  <td>
+                    <Link
+                      to={`/products/details/${order.productId}`}
+                      className="text-blue-500 underline"
+                    >
+                      View Product
+                    </Link>
+                  </td>
+
+                  <td>৳{order.totalPrice}</td>
+                  <td>{order.quantity}</td>
+
+                  <td>{statusBadge(order.payment_status)}</td>
+                  <td>{statusBadge(order.confirmation_status)}</td>
+
+                  <td>{new Date(order.date).toLocaleString()}</td>
+
+                  <td className="flex gap-2">
+                    {order.payment_status === "Paid" ? (
+                      <button disabled className="btn btn-sm btn-disabled">
+                        Paid
+                      </button>
+                    ) : (
+                      <>
+                        <Link to={`/dashboard/payments/${order._id}`}>
+                          <button className="btn btn-sm  btn-primary">
+                            <FaMoneyCheckAlt />
+                            Pay
+                          </button>
+                        </Link>
+                        <button
+                          className="btn btn-sm btn-error text-white"
+                          onClick={() => cancelOrder(order._id)}
+                        >
+                          <TiCancelOutline size={18} />
+                          Cancel
+                        </button>
+                      </>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };

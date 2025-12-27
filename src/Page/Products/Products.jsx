@@ -81,7 +81,7 @@ const Products = () => {
         <select
           value={category}
           onChange={(e) => updateParams({ category: e.target.value, page: 1 })}
-          className="px-4 py-2 bg-base-100 border-2 rounded w-full sm:w-60"
+          className="px-4 py-2 bg-base-100 border border-gray-400 rounded-lg w-full sm:w-60"
         >
           <option value="all">All</option>
           <option value="electronics">Electronics</option>
@@ -102,12 +102,12 @@ const Products = () => {
                 updateParams({ search: searchInput, page: 1 });
               }
             }}
-            className="px-4 py-2 border rounded-lg w-full"
+            className="px-4 py-2 border border-gray-400 rounded-lg w-full"
           />
 
           <button
             onClick={() => updateParams({ search: searchInput, page: 1 })}
-            className="btn rounded-xl btn-primary"
+            className="btn rounded-lg btn-primary"
           >
             Search
           </button>
