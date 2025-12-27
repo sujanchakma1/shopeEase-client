@@ -8,7 +8,18 @@ import { motion } from "framer-motion";
 export default function HeroSection() {
   return (
     <section className="relative w-full bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-white">
-      <div className="max-w-7xl mx-auto px-6 py-6 lg:py-8 grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
+      <div className="max-w-7xl hero-content mx-auto px-6 py-6 lg:py-8 flex-col lg:flex-row-reverse">
+        {/* Right Animation */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex justify-center"
+        >
+          <div className="w-full max-w-full">
+            <Lottie animationData={heroLottie} loop />
+          </div>
+        </motion.div>
         {/* Left Content */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -34,23 +45,9 @@ export default function HeroSection() {
             <button className="rounded-lg btn btn-primary">
               <Link to="/products">Browse Products →</Link>
             </button>
-            <button
-              className="rounded-lg btn-secondary btn btn-outline"
-            >
+            <button className="rounded-lg btn-secondary btn btn-outline">
               <Link to="/about"> Learn More</Link>
             </button>
-          </div>
-        </motion.div>
-
-        {/* Right Animation */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex justify-center"
-        >
-          <div className="w-full max-w-full">
-            <Lottie animationData={heroLottie} loop />
           </div>
         </motion.div>
       </div>
