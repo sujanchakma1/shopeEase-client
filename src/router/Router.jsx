@@ -22,6 +22,12 @@ import AdminRoute from "@/Routes/AdminRoute";
 import AdminHome from "@/Page/Dashboard/Admin/AdminHome";
 import DashboardIndexRedirect from "@/Page/Dashboard/DashboardIndexRedirect/DashboardIndexRedirect";
 import UserRoute from "@/Routes/UserRoute";
+import ManageUser from "@/Page/Dashboard/Admin/ManageUser";
+import AddProduct from "@/Page/Dashboard/Admin/AddProduct";
+import ManageProducts from "@/Page/Dashboard/Admin/ManageProducts";
+import UpdateProduct from "@/Page/Dashboard/Admin/UpdateProduct";
+import ManageOrder from "@/Page/Dashboard/Admin/ManageOrder";
+import Forbidden from "@/Shared/ForbiddenPage";
 
 const router = createBrowserRouter([
   {
@@ -105,6 +111,46 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "manage-user",
+        element: (
+          <AdminRoute>
+            <ManageUser></ManageUser>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "add-product",
+        element: (
+          <AdminRoute>
+            <AddProduct />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manage-product",
+        element: (
+          <AdminRoute>
+            <ManageProducts />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "update-product/:id",
+        element: (
+          <AdminRoute>
+            <UpdateProduct />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manage-order",
+        element: (
+          <AdminRoute>
+            <ManageOrder />
+          </AdminRoute>
+        ),
+      },
+      {
         path: "payments/:orderId",
         Component: Payments,
       },
@@ -117,6 +163,10 @@ const router = createBrowserRouter([
   {
     path: "*",
     Component: ErrorPage,
+  },
+  {
+    path: "/forbidden",
+    Component: Forbidden,
   },
 ]);
 

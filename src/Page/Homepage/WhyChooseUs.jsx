@@ -1,8 +1,8 @@
 import React from "react";
-import { FaShippingFast, FaShieldAlt, FaHeadset } from "react-icons/fa";
+import { FaShieldAlt, FaHeadset, FaGift } from "react-icons/fa";
 const WhyChooseUs = () => {
   return (
-    <div className="max-w-7xl mx-auto px-6">
+    <div className="max-w-7xl mx-auto px-6 py-10">
       <section>
         <h2 className="text-3xl font-bold text-center mb-10">Why Choose Us?</h2>
 
@@ -16,11 +16,11 @@ const WhyChooseUs = () => {
                 transition-all duration-300 text-center
               "
           >
-            <FaShippingFast className="text-4xl text-secondary mx-auto mb-4" />
-            <h3 className="font-bold text-lg">Fast & Reliable Delivery</h3>
+            <FaGift className="text-4xl text-secondary mx-auto mb-4" />
+            <h3 className="font-bold text-lg">Exclusive Offers & Discounts</h3>
             <p className="text-gray-600 text-sm mt-2">
-              Get your products delivered quickly with our optimized logistics
-              network.
+              Get access to special promotions, and exclusive
+              discounts that make shopping more rewarding.
             </p>
           </div>
 

@@ -31,17 +31,17 @@ const AdminHome = () => {
     {
       title: "Total Users",
       value: statsData.totalUsers,
-      icon: <FaUsers size={30} className="text-white" />,
+      icon: <FaUsers size={30} />,
     },
     {
       title: "Total Orders",
       value: statsData.totalOrders,
-      icon: <FaShoppingCart size={30} className="text-white" />,
+      icon: <FaShoppingCart size={30} />,
     },
     {
       title: "Total Revenue",
       value: `$${statsData.totalRevenue}`,
-      icon: <FaDollarSign size={30} className="text-white" />,
+      icon: <FaDollarSign size={30} />,
     },
   ];
 
@@ -54,28 +54,26 @@ const AdminHome = () => {
         {stats.map((item, index) => (
           <div
             key={index}
-            className="flex items-center gap-4 p-6 bg-primary rounded-lg shadow-lg"
+            className="group rounded-2xl p-6
+                bg-gradient-to-br from-base-100 to-base-200
+                shadow-md
+                hover:shadow-xl hover:-translate-y-1
+                transition-all duration-300 md:flex gap-4"
           >
-            <div className="bg-gray-500 p-2 rounded-full">{item.icon}</div>
+            <div
+              className="flex items-center justify-center
+                  w-14 h-14 rounded-full
+                  bg-primary/10 text-secondary
+                  group-hover:scale-110 transition"
+            >
+              {item.icon}
+            </div>
             <div>
               <p className="text-lg font-semibold">{item.title}</p>
               <p className="text-2xl font-bold">{item.value}</p>
             </div>
           </div>
         ))}
-      </div>
-
-      {/* Orders Chart */}
-      <div className="bg-base-200 p-6 rounded-lg shadow">
-        <h2 className="text-xl font-bold mb-4">Monthly Orders</h2>
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={statsData.monthlyOrders}>
-            <XAxis dataKey="month" />
-            <YAxis />
-            <Tooltip />
-            <Bar dataKey="orders" fill="#4f46e5" />
-          </BarChart>
-        </ResponsiveContainer>
       </div>
 
       {/* Quick Actions */}
@@ -94,6 +92,22 @@ const AdminHome = () => {
             <button className="btn btn-accent rounded-lg">Add Product</button>
           </Link>
         </div>
+      </div>
+
+      {/* Orders Chart */}
+      <div
+        className="bg-gradient-to-br from-base-100 to-base-200
+                shadow-md p-6 rounded-lg "
+      >
+        <h2 className="text-xl font-bold mb-4">Monthly Orders</h2>
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart data={statsData.monthlyOrders}>
+            <XAxis dataKey="month" />
+            <YAxis />
+            <Tooltip />
+            <Bar dataKey="orders" fill="#4f46e5" />
+          </BarChart>
+        </ResponsiveContainer>
       </div>
     </div>
   );

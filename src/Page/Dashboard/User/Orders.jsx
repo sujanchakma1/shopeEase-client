@@ -20,7 +20,7 @@ const Orders = () => {
   } = useQuery({
     queryKey: ["orders", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/orders?email=${user.email}`);
+      const res = await axiosSecure.get(`/order?email=${user.email}`);
       return res.data;
     },
     enabled: !!user?.email,
@@ -81,7 +81,7 @@ const Orders = () => {
   };
 
   return (
-    <div className=" w-full">
+    <div className="max-w-7xl mx-auto">
       <h2 className="text-2xl font-semibold mb-4">My Orders</h2>
 
       {orders.length === 0 && <p className="text-gray-600 text-center">No orders found.</p>}

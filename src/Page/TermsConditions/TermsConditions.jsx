@@ -2,117 +2,109 @@ import React from "react";
 
 const TermsConditions = () => {
   return (
-    <div className="container mx-auto px-6 py-10 max-w-7xl">
+    <div className="max-w-7xl mx-auto px-6 py-12">
       {/* Header */}
-      <div className="mb-10 text-center">
-        <h1 className="text-4xl font-bold mb-3">Terms & Conditions</h1>
+      <div className="text-center mb-12">
+        <h1 className="text-5xl font-bold text-primary mb-3">Terms & Conditions</h1>
+        <p className="mt-2 text-gray-500">
+          Welcome to <span className="font-semibold">ShopEase</span>. Please read these
+          Terms and Conditions carefully before using our website or services.
+        </p>
       </div>
 
-      <div className="space-y-8 leading-relaxed">
-        {/* Intro */}
+      <div className="space-y-10 leading-relaxed">
+        {/* Acceptance */}
         <section>
+          <h2 className="text-2xl font-semibold mb-3">1. Acceptance of Terms</h2>
           <p>
-            These Terms & Conditions govern your access to and use of our
-            application. By using our services, you agree to be bound by these
-            terms. If you do not agree with any part of the terms, you must not
-            use the application.
+            By accessing or using ShopEase services, you agree to comply with these
+            Terms and Conditions. If you disagree, please do not use our services.
           </p>
         </section>
 
-        {/* Eligibility */}
+        {/* Account Responsibility */}
         <section>
-          <h2 className="text-2xl font-semibold mb-2">Eligibility</h2>
+          <h2 className="text-2xl font-semibold mb-3">2. Account Responsibility</h2>
           <p>
-            By accessing this application, you confirm that you are at least 18
-            years old or using the platform under legal guardian supervision.
+            Users are responsible for maintaining the confidentiality of their
+            account information, including email, password, and any activity under
+            their account.
           </p>
         </section>
 
-        {/* Account Responsibilities */}
+        {/* Use of Services */}
         <section>
-          <h2 className="text-2xl font-semibold mb-2">
-            Account Responsibilities
-          </h2>
+          <h2 className="text-2xl font-semibold mb-3">3. Use of Services</h2>
           <ul className="list-disc pl-6 space-y-2">
-            <li>You are responsible for maintaining the confidentiality of your account.</li>
-            <li>You agree to provide accurate and complete information.</li>
-            <li>You are fully responsible for all activities under your account.</li>
+            <li>Use our services only for lawful purposes.</li>
+            <li>
+              Do not attempt to interfere with, disrupt, or exploit any part of the
+              website or services.
+            </li>
+            <li>
+              Respect intellectual property rights; do not reproduce or distribute
+              content without permission.
+            </li>
           </ul>
         </section>
 
-        {/* Acceptable Use */}
+        {/* Products & Pricing */}
         <section>
-          <h2 className="text-2xl font-semibold mb-2">Acceptable Use</h2>
-          <ul className="list-disc pl-6 space-y-2">
-            <li>Do not use the service for illegal or unauthorized purposes.</li>
-            <li>Do not attempt to hack, exploit, or disrupt the platform.</li>
-            <li>Do not upload harmful, abusive, or misleading content.</li>
-          </ul>
-        </section>
-
-        {/* Intellectual Property */}
-        <section>
-          <h2 className="text-2xl font-semibold mb-2">
-            Intellectual Property
-          </h2>
+          <h2 className="text-2xl font-semibold mb-3">4. Products & Pricing</h2>
           <p>
-            All content, logos, designs, and code on this platform are the
-            property of the application owner unless otherwise stated. You may
-            not copy, reproduce, or distribute any content without permission.
+            Product availability and prices are subject to change without prior
+            notice. ShopEase is not responsible for typographical errors or
+            inaccuracies.
           </p>
         </section>
 
-        {/* Termination */}
+        {/* Orders & Payments */}
         <section>
-          <h2 className="text-2xl font-semibold mb-2">
-            Account Termination
-          </h2>
+          <h2 className="text-2xl font-semibold mb-3">5. Orders & Payments</h2>
           <p>
-            We reserve the right to suspend or terminate your account without
-            prior notice if you violate these terms or misuse the service.
+            All orders are subject to acceptance and availability. Payment must be
+            completed for orders to be processed. ShopEase reserves the right to
+            cancel or refuse orders in case of discrepancies.
           </p>
         </section>
 
         {/* Limitation of Liability */}
         <section>
-          <h2 className="text-2xl font-semibold mb-2">
-            Limitation of Liability
-          </h2>
+          <h2 className="text-2xl font-semibold mb-3">6. Limitation of Liability</h2>
           <p>
-            We are not liable for any direct, indirect, incidental, or
-            consequential damages arising from your use of the platform.
+            ShopEase is not liable for any direct, indirect, incidental, or
+            consequential damages arising from the use or inability to use our
+            services.
+          </p>
+        </section>
+
+        {/* Termination */}
+        <section>
+          <h2 className="text-2xl font-semibold mb-3">7. Termination</h2>
+          <p>
+            ShopEase may suspend or terminate access to the services for users who
+            violate these Terms and Conditions or for any reason deemed necessary.
           </p>
         </section>
 
         {/* Modifications */}
         <section>
-          <h2 className="text-2xl font-semibold mb-2">
-            Modifications to Terms
-          </h2>
+          <h2 className="text-2xl font-semibold mb-3">8. Changes to Terms</h2>
           <p>
-            We reserve the right to update or modify these Terms & Conditions at
-            any time. Continued use of the application constitutes acceptance of
-            the updated terms.
-          </p>
-        </section>
-
-        {/* Governing Law */}
-        <section>
-          <h2 className="text-2xl font-semibold mb-2">Governing Law</h2>
-          <p>
-            These terms shall be governed and interpreted in accordance with the
-            laws of Bangladesh.
+            We may update these Terms and Conditions periodically. Users will be
+            notified of changes via the website. Continued use indicates acceptance
+            of revised terms.
           </p>
         </section>
 
         {/* Contact */}
         <section>
-          <h2 className="text-2xl font-semibold mb-2">Contact Information</h2>
+          <h2 className="text-2xl font-semibold mb-3">9. Contact Us</h2>
           <p>
-            If you have any questions regarding these Terms & Conditions, please
+            If you have questions regarding these Terms and Conditions, please
             contact us at:
           </p>
-          <p className="font-semibold mt-2">
+          <p className="mt-2 font-semibold text-primary">
             📧 Email: sujanckz926@gmail.com
           </p>
         </section>

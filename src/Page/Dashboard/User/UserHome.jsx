@@ -50,16 +50,31 @@ const UserHome = () => {
       </div>
 
       {/* Quick Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="bg-base-200 p-4 rounded-lg shadow text-center">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 ">
+        <div
+          className="group
+                bg-gradient-to-br from-base-100 to-base-200
+                hover:shadow-xl hover:-translate-y-1
+                transition-all duration-300 p-4 rounded-lg shadow text-center"
+        >
           <h3 className="text-lg font-semibold text-primary">Cart Items</h3>
           <p className="text-2xl font-bold mt-2">{cartItems.length}</p>
         </div>
-        <div className="bg-base-200 p-4 rounded-lg shadow text-center">
+        <div
+          className="group
+                bg-gradient-to-br from-base-100 to-base-200
+                hover:shadow-xl hover:-translate-y-1
+                transition-all duration-300 p-4 rounded-lg shadow text-center"
+        >
           <h3 className="text-lg font-semibold text-primary">Orders</h3>
           <p className="text-2xl font-bold mt-2">{orders.length}</p>
         </div>
-        <div className="bg-base-200 p-4 rounded-lg shadow text-center">
+        <div
+          className="group
+                bg-gradient-to-br from-base-100 to-base-200
+                hover:shadow-xl hover:-translate-y-1
+                transition-all duration-300 p-4 rounded-lg shadow text-center"
+        >
           <h3 className="text-lg font-semibold text-primary">Wishlist</h3>
           <p className="text-2xl font-bold mt-2">0</p>
         </div>
