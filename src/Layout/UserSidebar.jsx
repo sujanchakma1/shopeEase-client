@@ -1,12 +1,26 @@
+import UseAuth from "@/Hook/UseAuth";
 import Logo from "@/Shared/Logo";
+import { LogOut } from "lucide-react";
 import React from "react";
 import { NavLink } from "react-router";
 
 const UserSidebar = ({ onClose }) => {
+  const { logOut } = UseAuth();
   const menu = [
     { label: "Dashboard", path: "/dashboard/user-home" },
     { label: "My Orders", path: "/dashboard/orders" },
   ];
+
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        localStorage.removeItem("access-token");
+        window.location.replace("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className="w-56 bg-base-200 h-full shadow-md p-5">
@@ -21,14 +35,18 @@ const UserSidebar = ({ onClose }) => {
             to={item.path}
             onClick={() => onClose && onClose()}
             className={({ isActive }) =>
-              `p-2 rounded ${
-                isActive ? "bg-blue-600 text-white" : ""
-              }`
+              `p-2 rounded ${isActive ? "bg-blue-600 text-white" : ""}`
             }
           >
             {item.label}
           </NavLink>
         ))}
+        <button
+          onClick={handleLogout}
+          className="hover:cursor-pointer font-medium flex gap-2 items-center text-red-500 p-1"
+        >
+          <LogOut size={14} /> LogOut
+        </button>
       </nav>
     </div>
   );

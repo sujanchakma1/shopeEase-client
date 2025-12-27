@@ -12,7 +12,7 @@ const UserRoute = ({ children }) => {
   if (loading || isLoading) return <Loading />;
 
   if (!user || role !== "user") {
-    return <Navigate state={location.pathname} to="/forbidden"></Navigate>;
+    return <Navigate state={location.pathname} to="/forbidden" replace ></Navigate>;
   }
 
   return children;
