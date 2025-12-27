@@ -13,6 +13,7 @@ const Register = () => {
   const { createUser, logOut, updateUserProfile } = UseAuth();
   const axiosSecure = UseAxiosSecure();
   const navigate = useNavigate();
+  const IMGBB_KEY = import.meta.env.VITE_IMGBB_API_KEY;
   // react-hook-form setup
   const {
     register,
@@ -20,15 +21,31 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
+  const uploadImage = async (imageFile) => {
+    const formData = new FormData();
+    formData.append("image", imageFile);
+
+    const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_KEY}`, {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await res.json();
+    return data.data.display_url;
+  };
+
   // submit handler
-  const onSubmit = (data) => {
-    const { email, name, photoURL, password } = data;
+  const onSubmit = async (data) => {
+    const { email, name, photo, password } = data;
+    // 1️⃣ Upload image to ImgBB
+    const imageFile = photo[0];
+    const photoURL = await uploadImage(imageFile);
     createUser(email, password)
       .then(async (result) => {
         console.log(result.user);
         const profileInfo = {
           displayName: name,
-          photoURL: photoURL,
+          photoURL,
         };
 
         await updateUserProfile(profileInfo);
@@ -72,7 +89,7 @@ const Register = () => {
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             {/* Name */}
             <div>
-              <label className="block text-sm font-medium text-gray-700  mb-1">
+              <label className="block text-sm font-medium text-gray-600  mb-1">
                 Name
               </label>
               <input
@@ -90,14 +107,14 @@ const Register = () => {
 
             {/* Photo URL */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Photo URL
+              <label className="block text-sm font-medium text-gray-600 mb-1">
+                Profile Photo
               </label>
               <input
-                type="text"
-                placeholder="Enter your Photo URL"
-                {...register("photoURL", { required: "Photo URL is required" })}
-                className="w-full input input-bordered rounded-lg"
+                type="file"
+                accept="image/*"
+                {...register("photo", { required: "Photo is required" })}
+                className="file-input file-input-bordered w-full rounded-lg"
               />
               {errors.photoURL && (
                 <p className="text-red-500 text-sm mt-1">
@@ -108,7 +125,7 @@ const Register = () => {
 
             {/* Email */}
             <div>
-              <label className="block text-sm font-medium text-gray-700  mb-1">
+              <label className="block text-sm font-medium text-gray-600  mb-1">
                 Email
               </label>
               <input
@@ -132,7 +149,7 @@ const Register = () => {
 
             {/* Password */}
             <div>
-              <label className="block text-sm font-medium text-gray-700  mb-1">
+              <label className="block text-sm font-medium text-gray-600  mb-1">
                 Password
               </label>
               <div className="relative">

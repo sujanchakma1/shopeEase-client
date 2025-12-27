@@ -18,9 +18,8 @@ const PopularProducts = () => {
   } = useQuery({
     queryKey: ["popularProducts"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/product");
-      const sorted = res.data.reverse(); // latest first
-      return sorted.slice(0, 8); // first 8 items
+      const res = await axiosSecure.get("/popular-products");
+      return res.data;
     },
   });
 
