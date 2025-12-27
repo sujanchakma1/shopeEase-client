@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 export default function HeroSection() {
   return (
     <section className="relative w-full bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-white">
-      <div className="max-w-7xl mx-auto px-6 py-10 lg:py-16 grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
+      <div className="max-w-7xl mx-auto px-6 py-6 lg:py-8 grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
         {/* Left Content */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
