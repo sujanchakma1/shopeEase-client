@@ -78,7 +78,7 @@ const BuyProduct = () => {
           <legend className="fieldset-legend">Name</legend>
           <input
             name="fullName"
-            className="input input-bordered w-full"
+            className="input input-bordered w-full rounded-lg"
             placeholder="Enter Full Name"
             required
           />
@@ -86,7 +86,7 @@ const BuyProduct = () => {
           <input
             name="email"
             type="email"
-            className="input input-bordered w-full"
+            className="input input-bordered w-full rounded-lg"
             placeholder="Enter Email"
             value={user?.email}
             readOnly
@@ -94,19 +94,19 @@ const BuyProduct = () => {
           <legend className="fieldset-legend">Phone</legend>
           <input
             name="phone"
-            className="input input-bordered w-full"
+            className="input input-bordered w-full rounded-lg"
             placeholder="Enter Phone Number"
             required
           />
           <legend className="fieldset-legend">Address</legend>
           <textarea
             name="address"
-            className="textarea textarea-bordered w-full"
+            className="textarea textarea-bordered w-full rounded-lg"
             placeholder="Full Address"
             required
           />
 
-          <button className="btn btn-primary w-full mt-4">Place Order</button>
+          <button className="btn btn-primary w-full mt-4 rounded-lg">Place Order</button>
         </form>
       </div>
 

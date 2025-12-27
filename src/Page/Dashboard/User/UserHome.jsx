@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import UseAuth from "@/Hook/UseAuth";
 import UseAxiosSecure from "@/Hook/UseAxiosSecure";
+import Loading from "@/Page/Loading/Loading";
 
 const UserHome = () => {
   const { user } = UseAuth();
@@ -29,7 +30,7 @@ const UserHome = () => {
   });
 
   if (cartLoading || ordersLoading) {
-    return <p>Loading...</p>;
+    return <Loading></Loading>;
   }
 
   return (

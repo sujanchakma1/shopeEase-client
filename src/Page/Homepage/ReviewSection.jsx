@@ -76,7 +76,7 @@ const ReviewSection = () => {
       <h2 className="text-3xl font-bold text-center mb-12">Customer Reviews</h2>
       <Slider {...settings}>
         {reviews.map((review) => (
-          <div key={review.id} className="px-16">
+          <div key={review.id} className="px-10">
             <div className="bg-gradient-to-br from-base-100 to-base-200 rounded-xl shadow-lg py-6 flex flex-col items-center text-center hover:shadow-xl transition">
               <img
                 src={review.photo}
