@@ -121,6 +121,16 @@ const Navbar = () => {
                     </NavLink>
                   </h2>
                 ))}
+                {user && (
+                  <h2>
+                    <NavLink
+                      to="/dashboard"
+                      className=" flex gap-2 items-center border-b-1 border-b-gray-500 p-1 hover:text-primary"
+                    >
+                      <LuLayoutDashboard size={12} /> Dashboard
+                    </NavLink>
+                  </h2>
+                )}
 
                 <button
                   onClick={handleLogout}
