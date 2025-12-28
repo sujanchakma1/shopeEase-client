@@ -2,17 +2,61 @@ import React from "react";
 import UseAxiosSecure from "@/Hook/UseAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "@/Page/Loading/Loading";
+import Swal from "sweetalert2";
 
 const ManageUser = () => {
   const axiosSecure = UseAxiosSecure();
 
-  const { data: users = [], isLoading } = useQuery({
+  const {
+    data: users = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["admin-users"],
     queryFn: async () => {
       const res = await axiosSecure.get("/admin/users");
       return res.data;
     },
   });
+
+  // make admin
+  const handleMakeAdmin = async (user) => {
+    const result = await Swal.fire({
+      title: "Make Admin?",
+      text: `${user.name || "This user"} will get admin access`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, make admin",
+    });
+
+    if (!result.isConfirmed) return;
+
+    const res = await axiosSecure.patch(`/admin/users/${user._id}`);
+    if (res.data.modifiedCount > 0) {
+      Swal.fire("Success", "User promoted to admin", "success");
+      refetch();
+    }
+  };
+
+  // delete user
+  const handleDeleteUser = async (user) => {
+    const result = await Swal.fire({
+      title: "Delete User?",
+      text: "This action cannot be undone",
+      icon: "error",
+      showCancelButton: true,
+      confirmButtonText: "Delete",
+    });
+
+    if (!result.isConfirmed) return;
+
+    const res = await axiosSecure.delete(`/admin/users/${user._id}`);
+    if (res.data.deletedCount > 0) {
+      Swal.fire("Deleted", "User removed successfully", "success");
+      refetch();
+    }
+  };
+
   if (isLoading) return <Loading />;
 
   return (
@@ -29,6 +73,7 @@ const ManageUser = () => {
               <th>User</th>
               <th>Email</th>
               <th>Role</th>
+              <th className="text-center">Actions</th>
             </tr>
           </thead>
 
@@ -56,6 +101,24 @@ const ManageUser = () => {
                   >
                     {user.role}
                   </span>
+                </td>
+
+                <td className="flex gap-2 justify-center">
+                  <button
+                    onClick={() => handleMakeAdmin(user)}
+                    disabled={user.role === "admin"}
+                    className="btn btn-xs btn-success"
+                  >
+                    Make Admin
+                  </button>
+
+                  <button
+                    onClick={() => handleDeleteUser(user)}
+                    disabled={user.role === "admin"}
+                    className="btn btn-xs btn-error"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}

@@ -10,7 +10,7 @@ const VideoSection = () => {
           Watch our quick showcase video to explore features, benefits, and how
           our products can help you in daily life.
         </p>
-        <Link to="https://www.youtube.com/watch?=7E6um7NGmeE">
+        <Link to="https://www.youtube.com/watch?=igTVqtlrLxA">
           <button className="btn btn-primary rounded-lg">Explore More</button>
         </Link>
       </div>
@@ -18,7 +18,7 @@ const VideoSection = () => {
         <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden shadow-lg">
           <iframe
             className="w-full h-full"
-            src="https://www.youtube.com/embed/7E6um7NGmeE"
+            src="https://www.youtube.com/embed/igTVqtlrLxA"
             title="Product Video"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
