@@ -111,7 +111,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "manage-user",
+        path: "manage-users",
         element: (
           <AdminRoute>
             <ManageUser></ManageUser>

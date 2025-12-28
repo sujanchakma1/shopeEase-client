@@ -8,7 +8,7 @@ const AdminSidebar = ({ onClose }) => {
   const { logOut } = UseAuth();
   const menu = [
     { label: "Dashboard", path: "/dashboard/admin-home" },
-    { label: "Users", path: "/dashboard/manage-user" },
+    { label: "Manage Users", path: "/dashboard/manage-users" },
     { label: "Add Product", path: "/dashboard/add-product" },
     { label: "Manage Product", path: "/dashboard/manage-product" },
     { label: "Manage Ordered", path: "/dashboard/manage-order" },
