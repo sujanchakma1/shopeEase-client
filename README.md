@@ -1,12 +1,12 @@
-
-![ShopEase](https://shope-ease-web-project.vercel.app/)
-
 ## Overview
 
 ShopEase is a modern, responsive, and user-friendly web application built for [purpose e.g., e-commerce, portfolio, SaaS dashboard].  
 It provides a seamless experience with interactive features, fast performance, and clean design.
 
 ---
+## 🌐 Live Site
+
+🔗 [ShopEase-Web-Project](https://shope-ease-web-project.vercel.app)
 
 ## 🚀 Features
 
