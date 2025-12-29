@@ -1,20 +1,11 @@
 import {
-  FaShippingFast,
   FaShieldAlt,
-  FaHeadset,
   FaListAlt,
   FaUsers,
   FaStore,
-  FaGithub,
-  FaLinkedin,
+
 } from "react-icons/fa";
 import { useEffect } from "react";
-import sujan from "../../assets/Team/Sujan.png";
-import akash from "../../assets/Team/akash.jpeg";
-import jisa from "../../assets/Team/Jisa.jpg";
-import onik from "../../assets/Team/onik.png";
-import masud from "../../assets/Team/masud.png";
-import ronad from "../../assets/Team/ronad.jpeg";
 import story from "../../assets/Team/about-story.png"
 
 const About = () => {
@@ -135,81 +126,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* ===================== TEAM ===================== */}
-      <section>
-        <h2 className="text-3xl font-bold text-center text-primary mb-12">
-          Meet the Team
-        </h2>
-
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-10">
-          {[
-            {
-              name: "Sujan Chakma",
-              role: "Full Stack Developer",
-              img: sujan,
-              github: "https://github.com/sujanchakma1",
-              LinkedIn: "https://www.linkedin.com/in/sujan99",
-            },
-            {
-              name: "Rafiul Islam Ronad",
-              role: "MERN Stack Developer",
-              img: ronad,
-              github: "https://github.com/ronadislam",
-              LinkedIn: "https://www.linkedin.com/in/rafiulronad",
-            },
-            {
-              name: "Mohammad Akash",
-              role: "Frontend Developer",
-              img: akash,
-              github: "",
-              LinkedIn: "",
-            },
-            {
-              name: "Jannatul Jisa",
-              role: "Marketing Specialist",
-              img: jisa,
-              github: "",
-              LinkedIn: "",
-            },
-
-            {
-              name: "Onik Das",
-              role: "Project Manager",
-              img: onik,
-              github: "",
-              LinkedIn: "",
-            },
-            {
-              name: "Abdullah Al Masud",
-              role: "Sales Manager",
-              img: masud,
-              github: "",
-              LinkedIn: "",
-            },
-          ].map((member, idx) => (
-            <div
-              key={idx}
-              className="bg-base-200 p-6 space-y-2 rounded-xl shadow-lg text-center"
-            >
-              <img
-                src={member.img}
-                alt={member.name}
-                className="w-32 h-32 mx-auto rounded-full object-cover shadow-md"
-              />
-              <h3 className="mt-4 font-bold text-lg">{member.name}</h3>
-              <p className="text-gray-700 text-sm">{member.role}</p>
-              <div className="flex gap-4 justify-center">
-                <a href={member.github} className="hover:text-primary">
-                  <FaGithub size={24}/>
-                </a>
-                <a href={member.LinkedIn} className="hover:text-primary">
-                  <FaLinkedin size={24}/>
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
     </div>
   );
 };
