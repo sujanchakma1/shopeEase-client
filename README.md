@@ -1,7 +1,6 @@
 ## Overview
 
-ShopEase is a modern, responsive, and user-friendly web application built for [purpose e.g., e-commerce, portfolio, SaaS dashboard].  
-It provides a seamless experience with interactive features, fast performance, and clean design.
+ShopEase is a modern, responsive, and user-friendly web application built for purpose E-Commerce Platform.It provides a seamless experience with interactive features, fast performance, and clean design.
 
 ---
 ## 🌐 Live Site

@@ -1,13 +1,10 @@
 import React, { useRef } from "react";
-import { AiOutlineMail } from "react-icons/ai";
 import {
   FaClock,
   FaEnvelope,
   FaMapMarkerAlt,
-  FaPhone,
   FaPhoneAlt,
 } from "react-icons/fa";
-import { IoLocationOutline } from "react-icons/io5";
 import { FiSend } from "react-icons/fi";
 import { toast } from "react-toastify";
 import emailjs from "emailjs-com";
@@ -61,7 +58,7 @@ const Contact = () => {
   }
 
   return (
-    <div className="container mx-auto px-6 py-16">
+    <div className="container max-w-7xl mx-auto px-6 py-16">
       {/* ===== Header ===== */}
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold mb-3">Get in Touch</h2>
@@ -72,7 +69,7 @@ const Contact = () => {
 
       {/* Contact Info Cards */}
       <section className="py-16">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           <InfoCard
             icon={<FaPhoneAlt size={26}/>}
             title="Phone"
